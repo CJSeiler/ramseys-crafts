@@ -1,0 +1,63 @@
+.Menu-wrapper {
+    position: absolute;
+    top: 0;
+    right: -50%;
+    width: 40%;
+    margin-left: auto;
+    box-shadow: -2px 2px 5px rgba(157, 157, 157, 0.1);
+    padding-top: 50px;
+    background-color: rgb(255, 237, 249);
+    
+  }
+  
+  .show {
+    animation-name: open-menu;
+    animation-duration: 400ms;
+    animation-fill-mode: forwards;
+  }
+  
+  .hide {
+    animation-name: close-menu;
+    animation-duration: 400ms;
+    animation-fill-mode: forwards;
+  }
+  
+  .Menu-nav {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .Menu-nav-link {
+    color: rgb(138, 137, 137);
+    text-decoration: none;
+    font-size: 1.125rem;
+    background-color: rgb(255, 237, 249);
+    padding: 10px 10px 10px 20px;
+  }
+  
+  .Menu-nav-link:hover,
+  .Menu-nav-link:focus {
+    color: rgba(0, 0, 0, 0.7);
+    font-weight: bold;
+    background-color: rgb(255, 208, 239);
+  }
+  
+  @keyframes open-menu {
+    from {
+      right: -50%;
+    }
+  
+    to {
+      right: 0; 
+    }
+  }
+  
+  @keyframes close-menu {
+    from {
+      right: 0;
+    }
+  
+    to {
+      right: -50%; 
+    }
+  }

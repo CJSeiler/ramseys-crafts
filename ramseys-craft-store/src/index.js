@@ -4,15 +4,16 @@ import {
   createBrowserRouter,
   RouterProvider
 } from "react-router-dom";
-import './index.css';
+import { CartContextProvider } from './Context/CartContext';
 import App from './App';
-import ErrorPage from './Components/ErrorPage';
-import Home from './Components/Home'
-import About from './Components/About'
-import Contact from './Components/Contact'
-import Products from './Components/Products'
-import Cart from './Components/Cart'
-import reportWebVitals from './reportWebVitals';
+import ErrorPage from './Pages/ErrorPage';
+import Home from './Pages/Home'
+import About from './Pages/About'
+import Contact from './Pages/Contact'
+import Products from './Pages/Products'
+import ProductDetails from './Components/ProductDetails'
+import Cart from './Pages/Cart'
+
 
 const router = createBrowserRouter([
   {
@@ -34,25 +35,26 @@ const router = createBrowserRouter([
       },
       {
         path: "/products",
-        element: <Products/>
+        element: <Products/>,
+      },
+      {
+        path: "/products/:productID", 
+        element: <ProductDetails />
       },
       {
         path: "/cart",
         element: <Cart />
       }
     ]
-  },
-  
+  }
 ]);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <CartContextProvider>
+      <RouterProvider router={router} />
+    </CartContextProvider>
   </React.StrictMode>
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();

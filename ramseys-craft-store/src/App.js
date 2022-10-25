@@ -1,16 +1,18 @@
 import { Outlet } from "react-router-dom"
-import {useState} from "react"
-import Header from "./Components/Header"
+import { useState } from "react"
 import Menu from "./Components/Menu"
+import Navbar from "./Components/Navbar"
+import Footer from "./Components/Footer"
 import './App.css'
 
 function App() {
   const [isMenuShown, setIsMenuShown] = useState(false)
   return (
     <div className="App-container">
-      <Header handleClick={() => setIsMenuShown(!isMenuShown)} />
+      <Navbar handleClick={() => setIsMenuShown(!isMenuShown)} />
       {<Menu show={isMenuShown}/>}
       <Outlet />
+      <Footer />
     </div>
   );
 }

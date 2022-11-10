@@ -1,12 +1,11 @@
 import { Link } from "react-router-dom"
 export default function Favorite(props) {
     return (
-        <div className="favorite-card">
+        <div className="favorite-card flex-column">
             <Link to={`products/${props.id}`}>
                 <img src={props.image} alt="favorite product" />
             </Link>
-            <h3 className="favorite-title">{props.title}</h3>
-            <p className="favorite-description">{props.description}</p>
+            <p className="favorite-title bold">{props.title}</p>
         </div> 
     )
 }

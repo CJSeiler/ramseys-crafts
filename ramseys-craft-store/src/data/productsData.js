@@ -4,7 +4,7 @@ const productsData = [
     {
         image: {craft},
         title: "first title",
-        description: "first description",
+        description: "orem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Et tortor at risus viverra adipiscing at in. Dictumst vestibulum rhoncus est pellentesque elit ullamcorper.",
         id: 1,
         price: 5.99,
         isFavorite: true

@@ -7,17 +7,29 @@ export function CartItem(props) {
 
     return (
         <div className="cart-item-container">
-            <div className="cart-item">
-                <img src={props.img} alt={props.title} />
-                <h3>{props.title}</h3>
-                <p>{props.description}</p>
-                <p>quantity: {props.quantity}</p>
-                <button onClick={()=> increaseQuantity(props.item)}>+</button>
-                <button onClick={()=> decreaseQuantity(props.item)}>-</button>
-            </div>
+            <div className="cart-item flex-column">
+                <img className="cart-item-image" src={props.img} alt={props.title} />
 
-            <button onClick={()=> removeCartItem(props.item)}>Remove from cart</button>
-        </div>
+                <div className="cart-item-details flex-row">
+                    <div className="cart-item-details-description">
+                        <h3 className="cart-item-details-title">{props.title}</h3>
+                        <p>{props.description}</p>
+                    </div>
+
+                    <div className="cart-item-details-quantity flex-row">
+                        <p>quantity:</p>
+
+                        <button className="increase-button" onClick={()=> increaseQuantity(props.item)}>+</button>
+                        {props.quantity}
+                        <button className="decrease-button"onClick={()=> decreaseQuantity(props.item)}>-</button>
+                        <button className="cart-item-remove-button" onClick={()=> removeCartItem(props.item)}>Remove from cart</button>
+                    </div>
+
+                </div>
+
+                <p className="cart-item-price">${(props.quantity * props.price).toFixed(2)}</p>
+            </div>      
+        </div>          
     )
         
 }

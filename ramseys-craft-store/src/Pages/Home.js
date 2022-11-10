@@ -1,17 +1,17 @@
 import { productsData } from "../data/productsData"
 import Favorite from "../Components/Favorite"
 import Header from "../Components/Header"
+
 export default function Home() {
     const favoriteProducts = productsData.filter(product => product.isFavorite)
     const favoriteElements = favoriteProducts.map(product => {
-      const {id, image, title, description } = product
+      const {id, image, title} = product
       return (
           <Favorite
             key={id} 
             id={id}
             image={image}
             title={title}
-            description={description}
           />
         ) 
     })
@@ -19,12 +19,12 @@ export default function Home() {
     return (
         <div className="home-wrapper">
             <Header />
-            <h3 className="app-banner">Shop our favorites!</h3>
-            <main>
-              <div className="main-favorite-cards">
+            <p className="banner bold">Shop our favorites!</p>
+            <section className="favorites-container flex-row">
+              <div className="favorite-cards flex-column">
                   {favoriteElements}
               </div>
-            </main>
+            </section>
         </div>
     )
 }

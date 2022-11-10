@@ -18,15 +18,25 @@ export default function Cart() {
                 img={item.img} 
                 title={item.title}
                 description={item.description}
+                price={item.price}
                 quantity={item.quantity}
             />
         )
     })
 
+    function calculateTotalPrice() {
+        return cartItems.reduce((accumulator, value) => {
+            return accumulator + (value.quantity * value.price)
+        }, 0)
+    }
+
     return (
-        <div className="cart-container">
+        <div className="cart-container flex-column">
+            <h2 className="cart-heading">Cart</h2>
+            <p className="cart-price-heading">Price</p>
             {cartItemElements}
-            <button onClick={()=> emptyCart()}>Empty Cart</button>
+            <p className="cart-total-price">Total: ${calculateTotalPrice().toFixed(2)}</p>
+            <button className="empty-cart-button" onClick={()=> emptyCart()}>Empty Cart</button>
         </div>
     )
 }

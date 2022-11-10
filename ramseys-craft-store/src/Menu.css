@@ -1,30 +1,26 @@
 .Menu-wrapper {
     position: absolute;
     top: 0;
-    right: -50%;
+    right: 0;
     width: 40%;
-    margin-left: auto;
     box-shadow: -2px 2px 5px rgba(157, 157, 157, 0.1);
     padding-top: 50px;
     background-color: rgb(255, 237, 249);
+    transform: translateX(100%);
+    transition: transform 0.4s ease-in-out 0.2s;
     
   }
-  
+
   .show {
-    animation-name: open-menu;
-    animation-duration: 400ms;
-    animation-fill-mode: forwards;
-  }
-  
-  .hide {
-    animation-name: close-menu;
-    animation-duration: 400ms;
-    animation-fill-mode: forwards;
+    transform: translateX(0);
+    transition: transform 0.4s ease-in-out 0.2s;
   }
   
   .Menu-nav {
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
+    padding: 0;
   }
   
   .Menu-nav-link {
@@ -32,7 +28,9 @@
     text-decoration: none;
     font-size: 1.125rem;
     background-color: rgb(255, 237, 249);
-    padding: 10px 10px 10px 20px;
+    padding: 10px;
+    width: 100%;
+    margin: 0;
   }
   
   .Menu-nav-link:hover,
@@ -42,12 +40,14 @@
     background-color: rgb(255, 208, 239);
   }
   
-  @keyframes open-menu {
+  /* @keyframes open-menu {
     from {
+      display: none;
       right: -50%;
     }
   
     to {
+      display: block;
       right: 0; 
     }
   }
@@ -60,4 +60,4 @@
     to {
       right: -50%; 
     }
-  }
+  } */

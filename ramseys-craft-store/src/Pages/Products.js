@@ -1,4 +1,4 @@
-import { productsData } from "../data.js/productsData"
+import { productsData } from "../data/productsData"
 import { ProductCard } from "../Components/ProductCard"
 import '../App.css' 
 export default function Products() {
@@ -16,7 +16,7 @@ export default function Products() {
         )
     })
     return (
-        <div className="products-container">
+        <div className="products-container flex-column">
             <h2 className="products-heading">Products</h2>
             {productsElements}
         </div>

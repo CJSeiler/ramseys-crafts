@@ -1,53 +1,62 @@
-import React, { useContext } from "react"
-import { CartContext } from "../Context/CartContext"
+import { Link } from "react-router-dom"
+import { useSelector } from "react-redux"
+import { calculateTotalCartPrice } from "../utils"
 import { CartItem } from "../Components/cartComponents/CartItem"
 import Navbar from "../Components/Navbar"
 
-export default function Cart() {
-    const { emptyCart, cartItems } = useContext(CartContext)
+const CartScreen = () => {
+    const cart = useSelector(state => state.cart)
+    const {cartItems} = cart
     const isCartEmpty = cartItems.length === 0
-    if(isCartEmpty) {
-        return (
-            <>
-                <Navbar />
-                <div className="cart-container">
-                    <h1>Cart is empty</h1>
-                </div>  
-            </>
-        )
-    }
+
+    const totalItems = cartItems.reduce((acc, item) => {
+        return acc + item.qty
+    }, 0)
+ 
     const cartItemElements = cartItems.map(item => {
-        console.log(cartItems)
-        console.log(item.image)
         return (
             <CartItem 
-                key={item.id}
-                item={item} 
+                key={item.product}
+                id={item.product}
                 image={item.image} 
-                title={item.title}
-                description={item.description}
+                name={item.name}
                 price={item.price}
-                quantity={item.quantity}
-            />
-        )
-    })
+                />
+                )
+            })
+            
 
-    function calculateTotalPrice() {
-        return cartItems.reduce((accumulator, value) => {
-            return accumulator + (value.quantity * value.price)
-        }, 0)
-    }
-
-    return (
+    return isCartEmpty ?  
+        (
+        <>
+            <Navbar />
+            <div className="cart-container">
+                <div className="cart-header-empty">
+                    <h2>Your cart is empty.</h2>
+                    <Link to="/products" className="empty-cart-link">Start Shopping!</Link>
+                </div>
+            </div>  
+        </>
+        ) : (
         <>
             <Navbar />
             <div className="cart-container flex">
-                <h2 className="cart-heading">Cart</h2>
-                <p className="cart-price-heading">Price</p>
+                <div className="cart-header">
+                    <h2>Total Cart Items ({totalItems})</h2>
+                </div>
+
                 {cartItemElements}
-                <p className="cart-total-price">Total: ${calculateTotalPrice() / 100}</p>
-                <button className="empty-cart-button" onClick={()=> emptyCart()}>Empty Cart</button>
+
+                <p className="cart-total-price">Total: ${calculateTotalCartPrice(cartItems)}</p>
+
+
+                <div className="cart-links flex">
+                    <Link to="/products" className="cart-shopping-link">CONTINUE SHOPPING</Link>
+                    <Link to="/shipping" className="cart-checkout-link">CHECKOUT</Link>
+                </div>
             </div>
         </>
-    )
+        )
 }
+
+export default CartScreen

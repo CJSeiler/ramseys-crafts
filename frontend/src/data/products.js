@@ -6,7 +6,7 @@ import sweater_tan from "../images/sweater_tan.jpg"
 import tile_sweater from "../images/tile_sweater.jpg"
 
 
-const productsData = [
+const products = [
     {
         image: hat,
         title: "Pom Hat",
@@ -63,4 +63,4 @@ const productsData = [
     }
 ]
 
-export { productsData }
+export { products }

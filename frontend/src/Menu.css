@@ -8,6 +8,7 @@
     box-shadow: -2px 2px 5px rgba(157, 157, 157, 0.1);
     padding-top: 50px;
     background-color: rgba(0, 0, 0, 0.8);
+    z-index: 1000;
   }
 
   .show {
@@ -18,18 +19,26 @@
     display: none;
   }
 
-  .Menu ul {
+  .mobile-nav__links {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 1em;
-    width: 80%;
     margin-inline: auto;
     border-radius: 8px;
-    padding: var(--size-500);
+    padding: var(--size-400);
     background-color: var(--clr-neutral-100);
   }
+
+  .close-menu-icon {
+    align-self: flex-end;
+    aspect-ratio: 1;
+    height: 2rem;
+  }
   
+  .close-menu-icon:is(:hover, :focus) {
+    cursor: pointer
+  }
   .Menu-nav-link {
     color: var(--clr-primary-400);
     text-decoration: none;

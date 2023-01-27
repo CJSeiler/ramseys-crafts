@@ -1,35 +1,7 @@
 import { Link } from "react-router-dom"
-import { productsData } from "../data/products"
-import Favorite from "../Components/Favorite"
-// import Header from "../Components/Header"
 import Navbar from "../Components/Navbar"
 
-/**
- * @component
- * @Home
- * favoriteProducts filters the favorite products data from productsData file
- * favoriteElements return the elements for each favorite product
- * @returns home page with current favorite products
- */
-export default function Home() {
-    const favoriteProducts = productsData.filter(product => product.isFavorite)
-    const favoriteElements = favoriteProducts.map(product => {
-      const {id, image, title} = product
-
-      return (
-          <Favorite
-            key={id} 
-            id={id}
-            image={image}
-            title={title}
-          />
-        ) 
-    })
-
-    // <section className="favorite-cards flex">
-    //   {favoriteElements}
-    // </section>
-
+const HomeScreen = () => {
     return (
         <div className="home-wrapper">
           <Navbar />
@@ -55,3 +27,5 @@ export default function Home() {
         </div>
     )
 }
+
+export default HomeScreen

@@ -1,6 +1,7 @@
 import { Outlet } from "react-router-dom"
 import Footer from "./Components/Footer"
 import './App.css'
+import 'react-toastify/dist/ReactToastify.css'
 
 function App() {
   return (

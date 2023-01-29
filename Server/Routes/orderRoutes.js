@@ -4,7 +4,7 @@ import protect from "../Middleware/AuthMiddleware.js"
 
 const orderRouter = express.Router()
 
-//LOGIN
+// CREATE ORDER
 orderRouter.post("/", protect, asyncHandler(async (req, res) => {
     const {
         orderItems, 
@@ -13,7 +13,7 @@ orderRouter.post("/", protect, asyncHandler(async (req, res) => {
         itemsPrice, 
         taxPrice, 
         shippingPrice, 
-        totalPrice 
+        totalPrice,
     } = req.body
     
     if (orderItems && orderItems.length === 0) {
@@ -21,13 +21,14 @@ orderRouter.post("/", protect, asyncHandler(async (req, res) => {
         throw new Error("No order items")
     } else {
         const order = new Order({
-            orderItems, 
+            orderItems,
+            user: req.user._id, 
             shippingAddress, 
             paymentMethod, 
             itemsPrice, 
             taxPrice, 
             shippingPrice, 
-            totalPrice 
+            totalPrice, 
         })
 
         const createOrder = await order.save()

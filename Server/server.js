@@ -4,6 +4,7 @@ import connectDatabase from "./config/MongoDb.js"
 import ImportData from "./Dataimport.js"
 import productRouter from "./Routes/ProductRoutes.js"
 import userRouter from "./Routes/UserRoutes.js"
+import orderRouter from "./Routes/orderRoutes.js"
 import { notFound, errorHandler } from "./Middleware/Errors.js"
 
 dotenv.config()
@@ -15,6 +16,7 @@ app.use(express.json())
 app.use("/api/import", ImportData)
 app.use("/api/products", productRouter)
 app.use("/api/users", userRouter)
+app.use("/api/orders", orderRouter)
 
 // ERROR HANDLER
 app.use(notFound)

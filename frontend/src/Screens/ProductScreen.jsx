@@ -34,8 +34,9 @@ export default function ProductDetails() {
         setQty(Number(e.target.value))
     }
     
-    console.log(product.countInStock);
     const { title, image, description, price } = product
+
+    console.log(product);
 
     return (
         <>

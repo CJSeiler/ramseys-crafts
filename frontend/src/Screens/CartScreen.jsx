@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom"
 import { useSelector } from "react-redux"
-import { calculateTotalCartPrice } from "../utils"
+import { calculateCartSubtotal } from "../utils"
 import { CartItem } from "../Components/cartComponents/CartItem"
 import Navbar from "../Components/Navbar"
 
@@ -47,12 +47,12 @@ const CartScreen = () => {
 
                 {cartItemElements}
 
-                <p className="cart-total-price">Total: ${calculateTotalCartPrice(cartItems)}</p>
+                <p className="cart-total-price">Subtotal: ${calculateCartSubtotal(cartItems)}</p>
 
 
                 <div className="cart-links flex">
                     <Link to="/products" className="cart-shopping-link">CONTINUE SHOPPING</Link>
-                    <Link to="/shipping" className="cart-checkout-link">CHECKOUT</Link>
+                    <Link to="/shipping" className="cart-checkout-link flex">CHECKOUT</Link>
                 </div>
             </div>
         </>

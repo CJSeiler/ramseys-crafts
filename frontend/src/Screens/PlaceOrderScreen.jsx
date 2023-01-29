@@ -26,8 +26,7 @@ const PlaceOrderScreen = () => {
     cart.shippingPrice = calculateShippingPrice(cart.subTotalPrice)
     cart.taxPrice = calculateTaxPrice(cart.subTotalPrice)
     cart.totalPrice = calculateTotalOrderPrice(cart.subTotalPrice, cart.shippingPrice, cart.taxPrice)
-    console.log(cart.totalPrice, cart.taxPrice, cart.shippingPrice, cart.subTotalPrice);
-    console.log(cartItems)
+
     const orderItemsElements = cartItems.map(item => {
         return (
             <div className="order-items-info flex" key={item.product}>

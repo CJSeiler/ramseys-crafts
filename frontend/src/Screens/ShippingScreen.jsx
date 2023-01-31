@@ -40,7 +40,7 @@ const ShippingScreen = () => {
         <>
             <Navbar/>
             <div className="shipping-container flex">
-                <form className="shipping-form" onSubmit={handleSubmit}>
+                <form className="shipping-form flex" onSubmit={handleSubmit}>
                     <h1>DELIVERY ADDRESS</h1>
 
                     <label>

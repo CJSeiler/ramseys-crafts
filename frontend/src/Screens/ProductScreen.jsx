@@ -36,8 +36,6 @@ export default function ProductDetails() {
     
     const { title, image, description, price } = product
 
-    console.log(product);
-
     return (
         <>
             <Navbar />

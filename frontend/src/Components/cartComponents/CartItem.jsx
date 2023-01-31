@@ -1,61 +1,50 @@
-import React, { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
 import { removeFromCart, updateCartQuantity } from "../../Redux/Actions/CartActions.js"
 import { calculateItemPrice } from "../../utils.js"
 import img from "../../images/shaw.jpg"
+import closeMenu from "../../icons/close-menu.png"
 
 export function CartItem(props) {
-
     const dispatch = useDispatch()
-
     const currentItem = useSelector(state => state.cart.cartItems.find(x => x.product === props.id))
-    const [qty, setQty] = useState(currentItem.qty || 0)
 
     const removeFromCartHandle = id => {
         dispatch(removeFromCart(id))
     }
 
     const handleChange = e => {
-        setQty(Number(e.target.value))
+        dispatch(updateCartQuantity(props.id, Number(e.target.value)))
     }
-
-    useEffect(() => {
-        // prevents dispatch from running on mount
-        if(currentItem.qty !== qty) {
-            dispatch(updateCartQuantity(props.id, qty))
-        }
-    }, [dispatch, props.id, qty, currentItem.qty])
 
     return (
         <div className="cart-item flex">
             <img className="cart-item-image" src={img} alt={props.name} />
+
+            <p className="cart-item-price bold">${calculateItemPrice(currentItem.qty, props.price)}</p>
             
-            <div className="cart-item__details">
-                
-                    <h3 className="cart-item__name">
-                        <Link to={`/products/${props.id}`}>
-                            {props.name}
-                        </Link>
-                    </h3>
+            <h3 className="cart-item__name bold">
+                <Link to={`/products/${props.id}`} className="cart-item__link">
+                    {props.name}
+                </Link> 
+            </h3>
+
+            <p className="cart-item__description">{props.description}</p>
                     
+            <select className="cart-item-qty-input" value={currentItem.qty} onChange={(e) => handleChange(e)}>
+                {[...Array(currentItem.countInStock).keys()].map((x) => (
+                <option key={x + 1} value={x + 1}>
+                   Qty {x + 1}
+                </option>
+                ))}
+            </select>
 
-                <div className="cart-item-qty flex">
-                    <select className="cart-item-qty-input" value={qty} onChange={(e) => handleChange(e)}>
-                        <option value={1}>1</option>
-                        <option value={2}>2</option>
-                        <option value={3}>3</option>
-                    </select>
-
-                    <button 
-                        className="cart-item-remove-button"
-                        onClick={() => removeFromCartHandle(props.id)}
-                        >Remove from cart
-                    </button>
-                </div>
-            
-                <p className="cart-item-price">Price: ${calculateItemPrice(qty, props.price)}</p>
-            </div>
+            <button 
+                className="cart-item-remove-button"
+                onClick={() => removeFromCartHandle(props.id)}
+            >
+                <img src={closeMenu} alt="" />
+            </button>
         </div>      
                  
     )

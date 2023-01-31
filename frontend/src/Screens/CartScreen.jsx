@@ -20,7 +20,9 @@ const CartScreen = () => {
                 id={item.product}
                 image={item.image} 
                 name={item.name}
+                description={item.description}
                 price={item.price}
+                qty={item.qty}
                 />
                 )
             })

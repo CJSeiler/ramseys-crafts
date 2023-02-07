@@ -15,7 +15,8 @@ import {
 const initialState = {
     cart: {
         cartItems: [],
-        shippingAddress: {}
+        shippingAddress: {},
+        guestInfo: {},
     },
     userLogin: {
         userInfo: {}

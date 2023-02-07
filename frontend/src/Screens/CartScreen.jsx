@@ -6,7 +6,7 @@ import Navbar from "../Components/Navbar"
 
 const CartScreen = () => {
     const cart = useSelector(state => state.cart)
-    const {cartItems} = cart
+    const { cartItems } = cart
     const isCartEmpty = cartItems.length === 0
 
     const totalItems = cartItems.reduce((acc, item) => {
@@ -23,10 +23,9 @@ const CartScreen = () => {
                 description={item.description}
                 price={item.price}
                 qty={item.qty}
-                />
-                )
-            })
-            
+            />
+        )
+    })
 
     return isCartEmpty ?  
         (

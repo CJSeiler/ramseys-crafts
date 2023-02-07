@@ -4,6 +4,7 @@ import {
     CART_UPDATE_QTY,
     CART_SAVE_SHIPPING_ADDRESS,
     CART_SAVE_PAYMENT_METHOD,
+    CART_SAVE_GUEST_INFO,
 } from "../Constants/CartConstants"
 
 // ADD PRODUCT TO CART
@@ -58,7 +59,7 @@ export const updateCartQuantity = (id, qty) => async(dispatch, getState) => {
 }
 
 // SAVE SHIPPING ADDRESS
-export const saveShippingAddress = data => (dispatch) => {
+export const saveShippingAddress = data => dispatch => {
     dispatch({
         type: CART_SAVE_SHIPPING_ADDRESS,
         payload: data
@@ -68,11 +69,21 @@ export const saveShippingAddress = data => (dispatch) => {
 }
 
 // SAVE PAYMENT METHDO
-export const savePaymentMethod = data => (dispatch) => {
+export const savePaymentMethod = data => dispatch => {
     dispatch({
         type: CART_SAVE_PAYMENT_METHOD,
         payload: data
     })
 
     localStorage.setItem("paymentMethod", JSON.stringify(data))
+}
+
+// SAVE GUEST INFO
+export const saveGuestInfo = data => dispatch => {
+    dispatch({
+        type: CART_SAVE_GUEST_INFO,
+        payload: data
+    })
+
+    localStorage.setItem("guestInfo", JSON.stringify(data))
 }

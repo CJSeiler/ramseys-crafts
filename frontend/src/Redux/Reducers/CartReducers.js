@@ -4,9 +4,10 @@ import {
     CART_SAVE_SHIPPING_ADDRESS,
     CART_SAVE_PAYMENT_METHOD,
     CART_UPDATE_QTY,
+    CART_SAVE_GUEST_INFO,
 } from './../Constants/CartConstants';
 
-export const cartReducer = (state = { cartItems:[], shippingAddress: {} }, action) => {
+export const cartReducer = (state = { cartItems:[], shippingAddress: {}, guestInfo: {},}, action) => {
     let item, existItem
     switch (action.type) {
         case CART_ADD_ITEM:
@@ -57,13 +58,20 @@ export const cartReducer = (state = { cartItems:[], shippingAddress: {} }, actio
                 ...state,
                 paymentMethod: action.payload,
             }
+        
+        case CART_SAVE_GUEST_INFO:
+            return {
+                ...state,
+                guestInfo: action.payload,
+            }
             
         default:
             return {
                 ...state,
                 // must be defined here instead of initial state or items will show up empty
                 cartItems: JSON.parse(localStorage.getItem("cartItems")) || [],
-                shippingAddress: JSON.parse(localStorage.getItem("shippingAddress")) || {}
+                shippingAddress: JSON.parse(localStorage.getItem("shippingAddress")) || {},
+                guestInfo: JSON.parse(localStorage.getItem("guestInfo")) || null,
             }
     }
 }

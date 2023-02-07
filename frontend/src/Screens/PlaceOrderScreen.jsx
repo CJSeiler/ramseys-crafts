@@ -6,7 +6,6 @@ import { calculateShippingPrice,
          calculateCartSubtotal,
          calculateTotalOrderPrice, 
         } from "../utils"
-import moment from "moment"
 import Navbar from "./../Components/Navbar"
 import shaw from "../images/shaw.jpg"
 import userIcon from "../icons/user-solid.svg"

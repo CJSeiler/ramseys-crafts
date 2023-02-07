@@ -1191,6 +1191,10 @@ form button {
   } 
 }
 
+.recaptcha-checkbox:hover {
+  cursor: pointer;
+}
+
 /* menu animation */
 
 @keyframes open-menu {

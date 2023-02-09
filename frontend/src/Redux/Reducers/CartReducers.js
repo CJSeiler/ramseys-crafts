@@ -5,6 +5,7 @@ import {
     CART_SAVE_PAYMENT_METHOD,
     CART_UPDATE_QTY,
     CART_SAVE_GUEST_INFO,
+    CART_CLEAR_ITEMS,
 } from './../Constants/CartConstants';
 
 export const cartReducer = (state = { cartItems:[], shippingAddress: {}, guestInfo: {},}, action) => {
@@ -45,6 +46,12 @@ export const cartReducer = (state = { cartItems:[], shippingAddress: {}, guestIn
                     ...state,
                     cartItems: [...state.cartItems, item]
                 }
+            }
+        
+        case CART_CLEAR_ITEMS:
+            return {
+                ...state,
+                cartItems: []
             }
 
         case CART_SAVE_SHIPPING_ADDRESS:

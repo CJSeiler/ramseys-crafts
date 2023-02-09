@@ -6,6 +6,7 @@ import { calculateShippingPrice,
          calculateCartSubtotal,
          calculateTotalOrderPrice, 
         } from "../utils"
+import { createOrder } from "../Redux/Actions/OrderActions"
 import Navbar from "./../Components/Navbar"
 import shaw from "../images/shaw.jpg"
 import userIcon from "../icons/user-solid.svg"
@@ -21,12 +22,32 @@ const PlaceOrderScreen = () => {
     
     const { cartItems, shippingAddress, paymentMethod, guestInfo } = cart
     const { userInfo } = userLogin
+    const isLoggedIn = userInfo ? true : false
     
     useEffect(() => {
-        if(!userInfo && !guestInfo) {
+        if(!isLoggedIn && !guestInfo) {
             navigate("/guestcheckout")
         }
     })
+
+    const handlePlaceOrder = () => {
+        if(!isLoggedIn) {
+            // navigate to guest confirmation screen
+            console.log("guest order placed")
+            navigate("/orderconfirmation")
+        } else {
+            dispatch(createOrder({
+                orderItems: cart.cartItems,
+                shippingAddress: cart.shippingAddress,
+                paymentMethod: cart.paymentMethod,
+                itemsPrice: cart.itemsPrice,
+                shippingPrice: cart.shippingPrice,
+                taxPrice: cart.taxPrice,
+                totalPrice: cart.totalPrice,
+            }))
+            console.log("user order placed")
+        }
+    }
     
     // Calculate Price
     cart.subTotalPrice = calculateCartSubtotal(cartItems)
@@ -120,7 +141,10 @@ const PlaceOrderScreen = () => {
                     <p className="order-price-info__label">Total</p>
                     <p className="order-price-info__amount">${cart.totalPrice}</p>
 
-                    <button className="order-button">PLACE ORDER</button>
+                    <button 
+                        className="order-button"
+                        onClick={handlePlaceOrder}
+                    >PLACE ORDER</button>
                 </div>
 
             </div>

@@ -11,6 +11,7 @@ import {
     userDetailsReducer,
     userUpdateProfileReducer, 
 } from "./Reducers/UserReducer"
+import { orderCreateReducer } from "./Reducers/OrderReducers"
 
 const initialState = {
     cart: {
@@ -38,6 +39,7 @@ const store = configureStore({
         userRegister: userRegisterReducer,
         userDetails: userDetailsReducer,
         userUpdateProfile: userUpdateProfileReducer,
+        orderCreate: orderCreateReducer,
     },
     initialState,
     middleware: [thunk],

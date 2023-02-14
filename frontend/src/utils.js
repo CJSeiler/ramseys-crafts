@@ -8,18 +8,21 @@ const calculateCartSubtotal = (cartItems) => {
     }, 0).toFixed(2)
 }
 
-const calculateShippingPrice = (cartItemsSubtotal) => {
-    const shippingPrice = cartItemsSubtotal > 100 ? 0 : 20
-    return shippingPrice.toFixed(2)
+const calculateShippingPrice = (cartItemsLength, cartItemsSubtotal) => {
+    if(cartItemsLength === 0) {
+        return "0.00"
+    } else {
+        return (cartItemsSubtotal > 100 ? 0 : 20).toFixed(2)
+    }
 }
 
 const calculateTaxPrice = (cartSubtotalPrice) => {
-    return (0.15 * cartSubtotalPrice).toFixed(2)
+    return (0.08 * cartSubtotalPrice).toFixed(2)
 }
 
-const calculateTotalOrderPrice = (cartSubTotalPrice, cartShippingPrice, cartTaxPrice) => {
+const calculateTotalOrderPrice = (cartSubtotalPrice, cartShippingPrice, cartTaxPrice) => {
     const totalPrice = (
-        Number(cartSubTotalPrice) + 
+        Number(cartSubtotalPrice) + 
         Number(cartShippingPrice) + 
         Number(cartTaxPrice)
         )

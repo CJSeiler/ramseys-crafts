@@ -7,7 +7,9 @@ import { calculateShippingPrice,
          calculateTotalOrderPrice, 
         } from "../utils"
 import { createOrder } from "../Redux/Actions/OrderActions"
+import { ORDER_CREATE_RESET } from "../Redux/Constants/OrderConstants"
 import Navbar from "./../Components/Navbar"
+import Message from "../Components/LoadingError/Error"
 import shaw from "../images/shaw.jpg"
 import userIcon from "../icons/user-solid.svg"
 import truckIcon from "../icons/truck-solid.svg"
@@ -20,40 +22,60 @@ const PlaceOrderScreen = () => {
     const cart = useSelector(state => state.cart)
     const userLogin = useSelector(state => state.userLogin)
     
-    const { cartItems, shippingAddress, paymentMethod, guestInfo } = cart
+    const { 
+        cartItems, 
+        shippingAddress, 
+        paymentMethod, 
+        guestInfo, 
+        subtotalPrice, 
+        shippingPrice, 
+        taxPrice, 
+        totalPrice 
+    } = cart
+    const isCartEmpty = cartItems.length === 0
+    
     const { userInfo } = userLogin
     const isLoggedIn = userInfo ? true : false
+
+    const orderCreate = useSelector((state) => state.orderCreate)
+    const { order, success, error } = orderCreate
     
     useEffect(() => {
         if(!isLoggedIn && !guestInfo) {
             navigate("/guestcheckout")
         }
-    })
+    }, [isLoggedIn, guestInfo, navigate])
 
-    const handlePlaceOrder = () => {
+    useEffect(() => {
+        if (success) {
+          navigate(`/order/${order._id}`)
+          dispatch({ type: ORDER_CREATE_RESET })
+        }
+      }, [dispatch, navigate, success, order])
+
+    const handlePlaceOrder = async () => {
         if(!isLoggedIn) {
             // navigate to guest confirmation screen
             console.log("guest order placed")
             navigate("/orderconfirmation")
         } else {
             dispatch(createOrder({
-                orderItems: cart.cartItems,
-                shippingAddress: cart.shippingAddress,
-                paymentMethod: cart.paymentMethod,
-                itemsPrice: cart.itemsPrice,
-                shippingPrice: cart.shippingPrice,
-                taxPrice: cart.taxPrice,
-                totalPrice: cart.totalPrice,
+                orderItems: cartItems,
+                shippingAddress: shippingAddress,
+                paymentMethod: paymentMethod,
+                subtotalPrice: Number(subtotalPrice),
+                shippingPrice: Number(shippingPrice),
+                taxPrice: Number(taxPrice),
+                totalPrice: Number(totalPrice),
             }))
-            console.log("user order placed")
         }
     }
     
     // Calculate Price
-    cart.subTotalPrice = calculateCartSubtotal(cartItems)
-    cart.shippingPrice = calculateShippingPrice(cart.subTotalPrice)
-    cart.taxPrice = calculateTaxPrice(cart.subTotalPrice)
-    cart.totalPrice = calculateTotalOrderPrice(cart.subTotalPrice, cart.shippingPrice, cart.taxPrice)
+    cart.subtotalPrice = calculateCartSubtotal(cartItems)
+    cart.shippingPrice = calculateShippingPrice(cartItems.length, cart.subtotalPrice)
+    cart.taxPrice = calculateTaxPrice(cart.subtotalPrice)
+    cart.totalPrice = calculateTotalOrderPrice(cart.subtotalPrice, cart.shippingPrice, cart.taxPrice)
 
     const orderItemsElements = cartItems.map(item => {
         return (
@@ -129,8 +151,14 @@ const PlaceOrderScreen = () => {
                 </div>
 
                 <div className="order-price-info">
+                    {error && (
+                        <div className="order-price-info__alert">
+                            <Message variant="alert-danger">{error}</Message>
+                        </div>
+                    )}
+
                     <p className="order-price-info__label">Products</p>
-                    <p className="order-price-info__amount">${calculateCartSubtotal(cartItems)}</p>
+                    <p className="order-price-info__amount">${cart.subtotalPrice}</p>
 
                     <p className="order-price-info__label">Shipping</p>
                     <p className="order-price-info__amount">${cart.shippingPrice}</p>
@@ -141,10 +169,14 @@ const PlaceOrderScreen = () => {
                     <p className="order-price-info__label">Total</p>
                     <p className="order-price-info__amount">${cart.totalPrice}</p>
 
+                    
                     <button 
                         className="order-button"
                         onClick={handlePlaceOrder}
-                    >PLACE ORDER</button>
+                        disabled={isCartEmpty}
+                    >
+                        PLACE ORDER
+                    </button>
                 </div>
 
             </div>

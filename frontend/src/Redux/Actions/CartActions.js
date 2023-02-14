@@ -48,6 +48,7 @@ export const updateCartQuantity = (id, qty) => async(dispatch, getState) => {
         payload: {
             product: data._id,
             name: data.name,
+            description: data.description,
             image: data.image,
             price: data.price,
             countInStock: data.countInStock,

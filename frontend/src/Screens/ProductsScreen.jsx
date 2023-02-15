@@ -12,6 +12,7 @@ export default function Products() {
     useEffect(()=>{
         dispatch(listProduct())
     }, [dispatch])
+    
     const productsElements = products.map(product => {
         const {_id, image, name, description, price} = product
         return (

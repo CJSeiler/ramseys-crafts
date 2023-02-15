@@ -10,7 +10,6 @@ import { createOrder } from "../Redux/Actions/OrderActions"
 import { ORDER_CREATE_RESET } from "../Redux/Constants/OrderConstants"
 import Navbar from "./../Components/Navbar"
 import Message from "../Components/LoadingError/Error"
-import shaw from "../images/shaw.jpg"
 import userIcon from "../icons/user-solid.svg"
 import truckIcon from "../icons/truck-solid.svg"
 import locationIcon from "../icons/location-dot-solid.svg"
@@ -80,7 +79,7 @@ const PlaceOrderScreen = () => {
     const orderItemsElements = cartItems.map(item => {
         return (
             <div className="order-items-info flex" key={item.product}>
-                <img src={shaw} alt={item.name} height="100px" width="100px"/>
+                <img src="../../public/images/shaw.png" alt={item.name} height="100px" width="100px"/>
                 
                 <div className="order-items-info-right flex">
                     <p className="order-item-name">

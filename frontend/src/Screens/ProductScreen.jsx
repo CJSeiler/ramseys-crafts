@@ -4,7 +4,7 @@ import Navbar from "../Components/Navbar"
 import { useDispatch, useSelector } from 'react-redux';
 import { listSingleProduct } from "../Redux/Actions/ProductActions.js"
 import { addToCart } from "../Redux/Actions/CartActions.js"
-import imageHolder from "../images/sweater_gray.jpg"
+
 /**
  * @component
  * @ProductDetails
@@ -41,7 +41,7 @@ export default function ProductDetails() {
             <Navbar />
             <div className="product-container flex">
                 <h2 className="product-title">{title}</h2>
-                <img className="product-image" src={imageHolder} alt={title}/>
+                <img className="product-image" src={image} alt={title}/>
                 <p className="product-description">{description}</p>
                 <p className="product-price bold">${price / 100}</p>
                 <p>Quantity: </p>

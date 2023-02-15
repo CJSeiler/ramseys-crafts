@@ -255,7 +255,7 @@ header {
   justify-content: center;
   height: 30rem;
   width: 100%;
-  background-image: url("./images/header2.jpg");
+  background-image: url("../public/images/header2.jpg");
   background-color: var(--clr-neutral-900-opaque);
   background-blend-mode: multiply;
   background-repeat: no-repeat;
@@ -331,9 +331,9 @@ header h1 {
   height: 15rem;
   width: 15rem;
   padding: var(--size-400);
-  box-shadow: 0 0 5px 2px var(--clr-neutral-700-opaque);
   background-size: cover;
   background-repeat: no-repeat;
+  background-color: var(--clr-neutral-200);
 }
 
 .category-card__link {
@@ -341,7 +341,7 @@ header h1 {
   width: 50%;
   padding: var(--size-100) 0;
   background-color: var(--clr-neutral-100-opaque);
-  box-shadow: 0 0 5px var(--clr-neutral-900-opaque);
+  box-shadow: 0 0 3px var(--clr-box-shadow);
   font-size: var(--fs-400);
   text-align: center;
   text-transform: uppercase;
@@ -355,17 +355,17 @@ header h1 {
 
 
 .hats {
-  background-image: url("./images/hat_tan.jpg");
+  background-image: url("../public/images/hat.png");
   background-position: center;
 }
 
 .sweaters {
-  background-image: url("./images/sweater_gray.jpg");
+  background-image: url("../public//images/sweater_gray.png");
   background-position: center;
 }
 
 .yarn {
-  background-image: url("./images/shaw.jpg");
+  background-image: url("../public/images/shaw.png");
   background-position: center;
 }
 
@@ -700,6 +700,19 @@ textarea {
   background-color: var(--clr-primary-300);
 }
 
+.empty-cart-link {
+  background-color: var(--clr-neutral-900);
+  color: var(--clr-neutral-100);
+  padding: var(--size-100) var(--size-400);
+  border-radius: 5px;
+}
+
+.empty-cart-link:is(:hover, :focus-within) {
+  background-color: var(--clr-neutral-100);
+  color: var(--clr-primary-400);
+
+}
+
 .cart-links {
   justify-content: space-between;
   width: 100%;
@@ -733,17 +746,6 @@ textarea {
 .cart-shopping-link:is(:hover, :focus-within) {
   box-shadow: 0px 0px 5px var(--clr-neutral-900);
 }
-
-/* cart item */
-
-/* .cart-item {
-  flex-direction: column;
-  align-items: center;
-  gap: 0.5em;
-  padding: var(--size-300);
-  width: 100%;
-  box-shadow: 2px 2px 8px 3px var(--clr-box-shadow);
-} */
 
 .cart-item {
   display: grid;
@@ -1122,6 +1124,17 @@ form button {
 .order-button:is(:hover, :focus-within) {
   cursor: pointer;
   background-color: var(--clr-neutral-900);
+}
+
+.order-button:disabled {
+  background-color: var(--clr-neutral-900-opaque);
+  cursor: default;
+}
+
+.order-price-info__alert {
+  grid-column: span 2;
+  justify-self: center;
+  margin-bottom: var(--size-600);
 }
 
 @media(min-width: 35rem) {

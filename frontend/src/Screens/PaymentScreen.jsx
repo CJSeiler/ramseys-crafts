@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
 import { savePaymentMethod } from "./../Redux/Actions/CartActions"
@@ -7,7 +7,7 @@ import Navbar from "./../Components/Navbar"
 const PaymentScreen = () => {
     const navigate = useNavigate()
     const dispatch = useDispatch()
-
+    
     const cart = useSelector((state) => state.cart)
     const { shippingAddress } = cart
   

@@ -2,7 +2,6 @@ import { Link } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
 import { removeFromCart, updateCartQuantity } from "../../Redux/Actions/CartActions.js"
 import { calculateItemPrice } from "../../utils.js"
-import img from "../../images/shaw.jpg"
 import closeMenu from "../../icons/close-menu.png"
 
 export function CartItem(props) {
@@ -19,7 +18,7 @@ export function CartItem(props) {
 
     return (
         <div className="cart-item flex">
-            <img className="cart-item-image" src={img} alt={props.name} />
+            <img className="cart-item-image" src="../../../public/images/shaw.png" alt={props.name} />
 
             <p className="cart-item-price bold">${calculateItemPrice(currentItem.qty, props.price)}</p>
             

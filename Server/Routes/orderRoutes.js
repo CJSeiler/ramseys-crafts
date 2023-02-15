@@ -1,6 +1,9 @@
 import express from "express"
 import asyncHandler from "express-async-handler"
 import protect from "../Middleware/AuthMiddleware.js"
+import verifyOrder from "../utils/verifyOrder.js"
+import Order from "./../Models/OrderModel.js"
+
 
 const orderRouter = express.Router()
 
@@ -10,11 +13,17 @@ orderRouter.post("/", protect, asyncHandler(async (req, res) => {
         orderItems, 
         shippingAddress, 
         paymentMethod, 
-        itemsPrice, 
+        subtotalPrice, 
         taxPrice, 
         shippingPrice, 
         totalPrice,
     } = req.body
+
+   
+   if (!await verifyOrder(orderItems, totalPrice)) {
+        res.status(400)
+        throw new Error("Order prices do not match")
+   }
     
     if (orderItems && orderItems.length === 0) {
         res.status(400)
@@ -25,7 +34,7 @@ orderRouter.post("/", protect, asyncHandler(async (req, res) => {
             user: req.user._id, 
             shippingAddress, 
             paymentMethod, 
-            itemsPrice, 
+            subtotalPrice, 
             taxPrice, 
             shippingPrice, 
             totalPrice, 

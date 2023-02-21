@@ -5,11 +5,13 @@ const HomeScreen = () => {
     return (
         <div className="home-wrapper">
           <Navbar />
-          <header>
+
+          <div className="hero">
             <h1 className="heading bold">Ramsey's Crafts</h1>
             <p className="subheading">Handmade Crochet Clothing</p>
-            <Link className="header__link" to="/products">Shop Now</Link>
-          </header>
+            <Link className="hero__link" to="/products">Shop Now</Link>
+          </div>
+
           <div className="categories-container flex">
             <div className="category-card hats">
               <Link to="/products/hats" className="category-card__link">Hats</Link>
@@ -22,9 +24,8 @@ const HomeScreen = () => {
             <div className="category-card yarn">
               <Link to="/products/yarn" className="category-card__link">Yarn</Link>
             </div>
-          </div>
-          
-        </div>
+          </div> {/* closes categories container */}
+        </div> /* closes home-wrapper */
     )
 }
 

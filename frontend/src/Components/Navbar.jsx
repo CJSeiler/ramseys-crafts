@@ -1,85 +1,80 @@
-import React, { useState } from "react"
-import { Link } from "react-router-dom"
-import { useSelector, useDispatch } from 'react-redux';
-import { logout } from "../Redux/Actions/UserActions"
-import Menu from "./Menu"
-import hamburger from "../icons/hamburger.png"
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import Menu from "./Menu";
+import cartIcon from "../icons/cart.svg";
+import profileIcon from "../icons/profile-icon.svg";
+import facebookIcon from "../icons/f-icon.png";
+import instagramIcon from "../icons/ig-icon.png";
+import snapchatIcon from "../icons/snap-icon.png";
+import twitterIcon from "../icons/tw-icon.png";
 
-export default function Navbar() {
-    const [showMenu, setShowMenu] = useState(false)
-    const currentPath = window.location.pathname
-    const userLogin = useSelector(state => state.userLogin)
-    const { userInfo } = userLogin
-    const dispatch = useDispatch()
-
-    const logoutHandler = () => {
-        dispatch(logout())
-    }
- 
-    // each link has an onclick function that sets state for current tab
+const Header = () => {
+    const [isMenuShown, setIsMenuShown] = useState(false);
+    const cart = useSelector(state => state.cart);
+    const { cartItems } = cart;
     
     return (
-        <nav>
-            <Menu show={showMenu} close={() => setShowMenu(false)} />
-            <Link to="/"><p className="nav-logo">logo</p></Link>
-            
-            <ul className="nav-links-container">
-                <Link 
-                    to="/" 
-                >
-                    <li className={`nav-link ${currentPath === "/" ? "active" : ""}`}>Home</li>
-                </Link>
+        <header>
+            <div>
+                <div className="header-socials" aria-label="socials list">
+                    <a href="https://www.instagram.com" target="_blank" rel="noreferrer">
+                        <img src={instagramIcon} alt="instagram-icon"/>
+                    </a>
 
-                <Link 
-                    to="/about"  
-                >
-                    <li className={`nav-link ${currentPath === "/about" ? "active" : ""}`}>About</li>
-                </Link>
+                    <a href="https://www.facebook.com" target="_blank" rel="noreferrer">
+                        <img src={facebookIcon} alt="facebook-icon"/>
+                    </a>
 
-                <Link 
-                    to="/products"  
-                >
-                    <li className={`nav-link ${currentPath.includes("/products") ? "active" : ""}`}>Products</li>
-                </Link>
+                    <a href="https://www.snapchat.com" target="_blank" rel="noreferrer">
+                        <img src={snapchatIcon} alt="snapchat-icon"/>
+                    </a>
 
-                <Link 
-                    to="/contact"  
-                >
-                    <li className={`nav-link ${currentPath === "/contact" ? "active" : ""}`}>Contact</li>
-                </Link>
+                    <a href="https://www.twitter.com" target="_blank" rel="noreferrer">
+                        <img src={twitterIcon} alt="twitter-icon"/>
+                    </a>
+                </div>
 
-                <Link 
-                    to="/cart" 
-                >
-                    <li className={`nav-link ${currentPath === "/cart" ? "active" : ""}`}>Cart</li>
-                </Link>
+                <Link to="/"><img className="header-logo" src="/images/logo.png" alt="store logo"/></Link>
 
-                { userInfo ? (
-                    <Link 
-                        onClick={logoutHandler} 
-                        to="/login"
-                    >
-                        <li className={`nav-link ${currentPath === "/login" ? "active" : ""}`}>Logout</li>
-                    </Link>
-                ) : (
-                    <Link 
-                        to="/login" 
-                    >
-                        <li className={`nav-link ${currentPath === "/login" ? "active" : ""}`}>Login</li>
-                    </Link>
-                )}
-            </ul>
-            <button className="nav-button">
-                <img 
-                    src={hamburger}
-                    alt="menu icon"
-                    onClick={()=> {
-                        if(showMenu === false) {
-                            setShowMenu(true)
-                        }
-                    }}
-                />
-            </button>
-        </nav>
-    )
-}
+                <div className="header-icons"> 
+                    {/* wrapped in divs to prevent clicking the space around icon from activating the link*/}
+                    <div>
+                        <Link to="/login" aria-label="login link"><img className="header-profile-icon" src={profileIcon} alt="profile icon"/></Link>
+                    </div>
+
+                    <div className="header-icons__cart-container">
+                        <Link to="/cart" aria-label="shopping cart link"><img className="header-cart-icon" src={cartIcon} alt="cart icon"/></Link>
+                        {cartItems.length === 0 ? null : <p className="header-icons__cart-indicator">{cartItems.length}</p>}
+                    </div>
+                </div>
+
+                <button 
+                    className={`nav-hamburger-button ${isMenuShown ? "open" : ""}`}
+                    aria-label="mobile navigation toggle"
+                    aria-expanded={isMenuShown ? "true" : "false"}
+                    onClick={()=> {setIsMenuShown(prevIsMenuShown => !prevIsMenuShown)}}     
+                >
+                    {/* important for hamburger menu button animation*/}
+                    <span className="nav-hamburger-button__top"></span>
+                    <span className="nav-hamburger-button__mid"></span>
+                    <span className="nav-hamburger-button__bottom"></span>
+                </button>
+            </div>
+
+            <nav className="main-navigation" aria-label="main navigation">
+                <ul className="nav-links-container"> 
+                    <li className="nav-link"><Link to="/">Home</Link></li>
+                    <li className="nav-link"><Link to="/about">About</Link></li>
+                    <li className="nav-link"><Link to="/products">Products</Link></li>
+                    <li className="nav-link"><Link to="/contact">Contact</Link></li>
+                    <li className="nav-link"><Link to="/cart">Cart</Link></li>
+                </ul>
+            </nav>
+
+            {isMenuShown ? <Menu /> : null}
+        </header>
+    );
+};
+
+export default Header;

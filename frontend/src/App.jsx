@@ -1,15 +1,17 @@
-import { Outlet } from "react-router-dom"
-import Footer from "./Components/Footer"
-import './App.css'
-import 'react-toastify/dist/ReactToastify.css'
+import { Outlet } from "react-router-dom";
+import Header from "./Components/Header";
+import Footer from "./Components/Footer";
+import "./App.css";
+import "react-toastify/dist/ReactToastify.css";
 
-function App() {
+const App = () => {
   return (
-    <div className="App-container flex">
+    <div className="app-container">
+      <Header />
       <Outlet />
       <Footer />
     </div>
-  )
-}
+  );
+};
 
 export default App;

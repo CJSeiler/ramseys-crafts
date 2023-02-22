@@ -13,6 +13,6 @@ const ErrorScreen = () => {
       </p>
     </div>
   );
-}
+};
 
-export default ErrorScreen
+export default ErrorScreen;

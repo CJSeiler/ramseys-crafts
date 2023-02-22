@@ -12,16 +12,16 @@ const ProfileUpdateForm = () => {
         email: "",
         password: "",
         confirmPassword: "",
-    })
+    });
 
-    const toastId = useRef(null)
+    const toastId = useRef(null);
 
-    const userDetails = useSelector(state => state.userDetails)
-    const { loading, error, user } = userDetails
+    const userDetails = useSelector(state => state.userDetails);
+    const { loading, error, user } = userDetails;
 
-    const userUpdateProfile = useSelector(state => state.userUpdateProfile)
-    const { loading: updateLoading} = userUpdateProfile
-    const dispatch = useDispatch()
+    const userUpdateProfile = useSelector(state => state.userUpdateProfile);
+    const { loading: updateLoading} = userUpdateProfile;
+    const dispatch = useDispatch();
 
     useEffect(() => {
         if(user) {
@@ -30,23 +30,23 @@ const ProfileUpdateForm = () => {
                 email: user.email,
                 password: "",
                 confirmPassword: "",
-            })
+            });
         }
-    }, [dispatch, user])
+    }, [dispatch, user]);
 
     const handleChange = e => {
-        const {name, value} = e.target
+        const {name, value} = e.target;
 
         setFormData(prevFormData => {
             return {
                 ...prevFormData,
                 [name]: value
-            }
-        })
-    }
+            };
+        });
+    };
 
     const handleSubmit = (e) => {
-        e.preventDefault()
+        e.preventDefault();
 
         if(formData.password !== formData.confirmPassword) {
             // prevents the error from stacking multiple times
@@ -54,8 +54,8 @@ const ProfileUpdateForm = () => {
                 toastId.current = toast.error("Password does not match");
               }
         } else {
-            const { name, email, password } = formData
-            dispatch(updateUserProfile({id: user._id, name, email, password}))
+            const { name, email, password } = formData;
+            dispatch(updateUserProfile({id: user._id, name, email, password}));
             if (!toast.isActive(toastId.current)) {
                 toastId.current = toast.success("Profile Updated");
               }
@@ -115,7 +115,7 @@ const ProfileUpdateForm = () => {
                         <button>UPDATE PROFILE</button>
                     </form>
         </>
-    )
-}
+    );
+};
 
-export default ProfileUpdateForm
+export default ProfileUpdateForm;

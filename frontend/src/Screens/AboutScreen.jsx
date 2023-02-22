@@ -1,10 +1,6 @@
-import Navbar from "../Components/Navbar"
-
-
 const AboutScreen = () => {
     return (
         <>
-            <Navbar />
             <section className="about-container flex">
                 <h3 className="about-subheading">About</h3>
                 <img className="about-image" src="/images/craft.jpg" alt="yarn layed out on a desk" />
@@ -17,7 +13,7 @@ const AboutScreen = () => {
             </section>
         
         </>
-    )
-}
+    );
+};
 
-export default AboutScreen
+export default AboutScreen;

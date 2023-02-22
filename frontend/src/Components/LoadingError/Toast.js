@@ -1,5 +1,4 @@
-import React from "react"
-import { ToastContainer } from "react-toastify"
+import { ToastContainer } from "react-toastify";
 
 const Toast = () => {
     return (
@@ -16,10 +15,9 @@ const Toast = () => {
                 pauseOnHover
                 theme="light"
             >
-
             </ToastContainer>
         </div>
-    )
-}
+    );
+};
 
-export default Toast
+export default Toast;

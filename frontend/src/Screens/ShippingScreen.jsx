@@ -1,44 +1,41 @@
-import React, { useState } from "react"
-import { useNavigate } from "react-router-dom"
-import { useSelector, useDispatch } from 'react-redux'
-import { saveShippingAddress } from "../Redux/Actions/CartActions"
-import Navbar from './../Components/Navbar';
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { saveShippingAddress } from "../Redux/Actions/CartActions";
 
 const ShippingScreen = () => {
 
-    const cart = useSelector(state => state.cart)
-    const { shippingAddress } = cart
-    console.log(shippingAddress);
+    const cart = useSelector(state => state.cart);
+    const { shippingAddress } = cart;
 
     const [formData, setFormData] = useState({
         address: shippingAddress.address,
         city: shippingAddress.city,
         postalCode: shippingAddress.postalCode,
-    })
+    });
 
-    const dispatch = useDispatch()
-    const navigate = useNavigate()
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const handleChange = e => {
-        const {name, value} = e.target
+        const {name, value} = e.target;
 
         setFormData(prevFormData => {
             return {
                 ...prevFormData,
                 [name]: value
-            }
-        })
-    }
+            };
+        });
+    };
 
     const handleSubmit = (e) => {
-        e.preventDefault()
-        dispatch(saveShippingAddress(formData))
-        navigate("/payment")
+        e.preventDefault();
+        dispatch(saveShippingAddress(formData));
+        navigate("/payment");
     }
 
     return (
         <>
-            <Navbar/>
             <div className="shipping-container flex">
                 <form className="shipping-form flex" onSubmit={handleSubmit}>
                     <h1>DELIVERY ADDRESS</h1>
@@ -78,7 +75,7 @@ const ShippingScreen = () => {
                 </form>
             </div>
         </>
-    )
-}
+    );
+};
 
-export default ShippingScreen
+export default ShippingScreen;

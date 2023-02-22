@@ -1,17 +1,16 @@
-import { Link } from "react-router-dom"
-import { useSelector } from "react-redux"
-import { calculateCartSubtotal } from "../utils"
-import { CartItem } from "../Components/cartComponents/CartItem"
-import Navbar from "../Components/Navbar"
+import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { calculateCartSubtotal } from "../utils";
+import CartItem from "../Components/cartComponents/CartItem";
 
 const CartScreen = () => {
-    const cart = useSelector(state => state.cart)
-    const { cartItems } = cart
-    const isCartEmpty = cartItems.length === 0
+    const cart = useSelector(state => state.cart);
+    const { cartItems } = cart;
+    const isCartEmpty = cartItems.length === 0;
 
     const totalItems = cartItems.reduce((acc, item) => {
-        return acc + item.qty
-    }, 0)
+        return acc + item.qty;
+    }, 0);
  
     const cartItemElements = cartItems.map(item => {
         return (
@@ -24,13 +23,12 @@ const CartScreen = () => {
                 price={item.price}
                 qty={item.qty}
             />
-        )
-    })
+        );
+    });
 
     return isCartEmpty ?  
         (
         <>
-            <Navbar />
             <div className="cart-container">
                 <div className="cart-header-empty">
                     <h2>Your cart is empty.</h2>
@@ -40,7 +38,6 @@ const CartScreen = () => {
         </>
         ) : (
         <>
-            <Navbar />
             <div className="cart-container flex">
                 <div className="cart-header">
                     <h2>Total Cart Items ({totalItems})</h2>
@@ -57,7 +54,7 @@ const CartScreen = () => {
                 </div>
             </div>
         </>
-        )
-}
+        );
+};
 
-export default CartScreen
+export default CartScreen;

@@ -1,52 +1,49 @@
-import React, { useState, useEffect } from "react"
-import { useDispatch, useSelector } from "react-redux"
-import { Link, useNavigate } from "react-router-dom"
-import { register } from "../Redux/Actions/UserActions"
-import Navbar from "../Components/Navbar"
-import Message from "../Components/LoadingError/Error"
-import Loading from "../Components/LoadingError/Loading"
+import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import { register } from "../Redux/Actions/UserActions";
+import Message from "../Components/LoadingError/Error";
+import Loading from "../Components/LoadingError/Loading";
 
 const RegisterScreen = () => {
     const [formData, setFormData] = useState({
         name: "",
         email: "",
         password: "",
-    })
+    });
 
-    console.log(formData);
+    const [confirmPassword, setConfirmPassword] = useState("");
 
-    const [confirmPassword, setConfirmPassword] = useState("")
-
-    const dispatch = useDispatch()
-    const navigate = useNavigate()
-    const userRegister = useSelector(state => state.userRegister)
-    const { error, loading, userInfo } = userRegister
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const userRegister = useSelector(state => state.userRegister);
+    const { error, loading, userInfo } = userRegister;
 
     useEffect(() => {
         if (userInfo) {
-            navigate("/")
+            navigate("/");
         }
-    }, [navigate, userInfo])
+    }, [navigate, userInfo]);
 
     const handleChange = e => {
-        const {name, value} = e.target
+        const {name, value} = e.target;
 
         if (name === "confirmPassword") {
-            setConfirmPassword(value)
+            setConfirmPassword(value);
         }
 
         setFormData(prevFormData => {
             return {
                 ...prevFormData,
                 [name]: value
-            }
-        })
-    }
+            };
+        });
+    };
 
     const handleSubmit = (e) => {
-        e.preventDefault()
+        e.preventDefault();
         if(formData.password === confirmPassword) {
-            dispatch(register(formData.name, formData.email, formData.password))
+            dispatch(register(formData.name, formData.email, formData.password));
         } else {
             console.log("passwords dont match");
         }
@@ -54,9 +51,7 @@ const RegisterScreen = () => {
         
     return (
         <>
-            <Navbar />
             <div className="register-container flex">
-
                 {error && <Message variant={"alert-danger"}>{error}</Message>}
                 {loading && <Loading />}
 
@@ -112,7 +107,7 @@ const RegisterScreen = () => {
                 </form>
             </div>
         </>
-    )
-}
+    );
+};
 
-export default RegisterScreen
+export default RegisterScreen;

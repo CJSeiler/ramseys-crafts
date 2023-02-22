@@ -1,5 +1,3 @@
-import React from "react";
-
 const Loading = () => {
     return (
         <div className="loading-container flex">
@@ -11,7 +9,7 @@ const Loading = () => {
                 <span className="sr-only">Loading...</span>
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default Loading
+export default Loading;

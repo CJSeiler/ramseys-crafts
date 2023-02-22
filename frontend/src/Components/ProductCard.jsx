@@ -1,8 +1,6 @@
-import React from "react"
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
 
-export function ProductCard(props) {
-    console.log(props.image)
+const ProductCard = (props) => {
     return (
         <div className="product-card flex">
             <Link to={`/products/${props.id}`}>
@@ -11,5 +9,7 @@ export function ProductCard(props) {
             <p className="product-card-title">{props.name}</p>
             <p className="product-card-price bold">${props.price}</p>
         </div>
-    )
-}
+    );
+};
+
+export default ProductCard;

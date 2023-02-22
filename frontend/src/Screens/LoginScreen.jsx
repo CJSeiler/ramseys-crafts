@@ -1,47 +1,45 @@
-import { useState, useEffect } from "react"
-import { Link, useNavigate } from "react-router-dom"
+import { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
-import Navbar from "../Components/Navbar"
-import Message from "../Components/LoadingError/Error"
-import Loading from "../Components/LoadingError/Loading"
-import { login } from "../Redux/Actions/UserActions"
+import Message from "../Components/LoadingError/Error";
+import Loading from "../Components/LoadingError/Loading";
+import { login } from "../Redux/Actions/UserActions";
 
 const LoginScreen = () => {
     const [formData, setFormData] = useState({
         email: "",
         password: "",
-    })
+    });
 
-    const dispatch = useDispatch()
-    const navigate = useNavigate()
-    const userLogin = useSelector(state => state.userLogin)
-    const { error, loading, userInfo } = userLogin
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const userLogin = useSelector(state => state.userLogin);
+    const { error, loading, userInfo } = userLogin;
 
     useEffect(() => {
         if (userInfo) {
             navigate("/")
         }
-    }, [navigate, userInfo])
+    }, [navigate, userInfo]);
 
     const handleChange = e => {
-        const {name, value} = e.target
+        const {name, value} = e.target;
 
         setFormData(prevFormData => {
             return {
                 ...prevFormData,
                 [name]: value
-            }
-        })
-    }
+            };
+        });
+    };
 
     const handleSubmit = (e) => {
-        e.preventDefault()
-        dispatch(login(formData.email, formData.password))
-    }
+        e.preventDefault();
+        dispatch(login(formData.email, formData.password));
+    };
 
     return (
         <>
-            <Navbar />
             <div className="login-container flex">
                 {error && <Message variant={"alert-danger"}>{error}</Message>}
                 {loading && <Loading />}
@@ -74,7 +72,7 @@ const LoginScreen = () => {
                 </form>
             </div>
         </>
-    )
-}
+    );
+};
 
-export default LoginScreen
+export default LoginScreen;

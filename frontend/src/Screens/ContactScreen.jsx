@@ -1,31 +1,30 @@
-import { useState, useRef } from "react"
-import ReCAPTCHA from "react-google-recaptcha"
-import axios from "axios"
-import emailjs from "@emailjs/browser"
-import Navbar from "../Components/Navbar"
+import { useState, useRef } from "react";
+import ReCAPTCHA from "react-google-recaptcha";
+import axios from "axios";
+import emailjs from "@emailjs/browser";
 
 const ContactScreen = () => {
-    const captchaRef = useRef(null)
-    const form = useRef(null)
+    const captchaRef = useRef(null);
+    const form = useRef(null);
 
     const [contactForm, setContactForm] = useState({
         from_name: "",
         email_id: "",
         message: ""
-    })
+    });
 
     
     const handleChange = (e) => {
-        const target = e.target
-        const {name, value} = target
+        const target = e.target;
+        const {name, value} = target;
         
         setContactForm(prevForm => {
             return {
                 ...prevForm,
                 [name]: value
-            }
-        })
-    }
+            };
+        });
+    };
 
     const sendEmail = () => {
         emailjs.sendForm(
@@ -35,30 +34,29 @@ const ContactScreen = () => {
             process.env.REACT_APP_EMAIL_PUBLIC_KEY
             )
             .then((response) => {
-                console.log('SUCCESS!', response.status, response.text)
+                console.log('SUCCESS!', response.status, response.text);
             }, (error) => {
                 console.log('FAILED...', error);
             });
         };
         
     const handleSubmit = async (e) =>{
-        e.preventDefault()
+        e.preventDefault();
 
-        const token = captchaRef.current.getValue()
-        captchaRef.current.reset()
+        const token = captchaRef.current.getValue();
+        captchaRef.current.reset();
 
         try {
-            const response = await axios.post("/api/contact/verify-token", { token })
-            console.log(response.data)
-            sendEmail()
+            const response = await axios.post("/api/contact/verify-token", { token });
+            console.log(response.data);
+            sendEmail();
         } catch (e) {
-            console.log(e)
+            console.log(e);
         }   
     }
 
     return (
         <div>
-            <Navbar />
             <div className="contact-container">
                 <div className="contact-image">Big Image</div>
 
@@ -119,7 +117,7 @@ const ContactScreen = () => {
                 <div className="contact-details">Contact details</div>
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default ContactScreen
+export default ContactScreen;

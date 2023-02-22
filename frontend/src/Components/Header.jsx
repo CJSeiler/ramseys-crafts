@@ -56,7 +56,7 @@ const Header = () => {
                         aria-expanded={isMenuShown ? "true" : "false"}
                         onClick={()=> {setIsMenuShown(prevIsMenuShown => !prevIsMenuShown)}}     
                     >
-                        {/* important for hamburger menu button animation*/}
+                        {/* hamburger menu button pieces*/}
                         <span className="mobile-nav__hamburger-button__top"></span>
                         <span className="mobile-nav__hamburger-button__mid"></span>
                         <span className="mobile-nav__hamburger-button__bottom"></span>

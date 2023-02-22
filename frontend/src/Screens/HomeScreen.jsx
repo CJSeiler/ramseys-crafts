@@ -21,8 +21,8 @@ const HomeScreen = () => {
             <div className="category-card yarn">
               <Link to="/products?category=yarn" className="category-card__link" aria-label="Link to yarn products">Yarn</Link>
             </div>
-          </section> {/* closes categories container */}
-        </div> /* closes home-wrapper */
+          </section>
+        </div>
     );
 };
 

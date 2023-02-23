@@ -16,7 +16,7 @@
 
   --clr-neutral-900: hsl(232, 12%, 13%);
   --clr-neutral-900-opaque: hsla(232, 12%, 13%, 0.6);
-  --clr-neutral-700-opaque: hsla(232, 12%, 35%, 0.8);
+  --clr-neutral-700-opaque: hsla(232, 12%, 35%, 0.6);
   --clr-neutral-400-opaque: hsla(0, 0%, 80%, 0.4);
   --clr-neutral-300: hsl(0 0% 85%);
   --clr-neutral-200: hsl(0 0% 97%);
@@ -185,12 +185,65 @@ ol {
 
 /* GENERAL STYLING */
 
-
 a {
   color: var(--clr-neutral-900);
   text-decoration: none;
   margin: 0;
 }
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: var(--size-500);
+  box-shadow: 0px 0px 5px var(--clr-box-shadow);
+}
+
+form a {
+  margin: 0;
+}
+
+form label {
+  font-size: var(--fs-400);
+}
+
+form input {
+  width: 100%;
+  padding: var(--size-200);
+  font-size: var(--fs-400);
+}
+
+form textarea {
+  padding: var(--size-200);
+  min-height: 5rem;
+  max-height: 20rem;
+}
+
+form input,
+form textarea {
+  box-shadow: 0px 0px 5px var(--clr-box-shadow);
+}
+
+form button {
+  width: 100%;
+  color: var(--clr-neutral-100);
+  background-color: var(--clr-accent-500);
+  padding: var(--size-300);
+}
+
+form button:is(:hover, :focus-within) {
+  cursor: pointer;
+  background-color: var(--clr-neutral-900);
+}
+
+form input,
+form button,
+form textarea {
+  border: none;
+  border-radius: 3px;
+}
+
+/* APP */
 
 .app-container {
   display: flex;
@@ -851,47 +904,68 @@ footer {
   display: grid;
   grid-template-areas: 
   "image"
-  "form"
-  "map"
-  "details";
+  "contact-bottom";
+  grid-template-columns: 20rem;
+  width: 100%;
+}
+
+@media(min-width: 25em) {
+  .contact-container {
+    grid-template-columns: auto;
+  }
 }
 
 @media(min-width: 50em) {
   .contact-container {
-    display: grid;
     grid-template-areas: 
-      "image form"
-      "details details"
-      "map map";
-    grid-template-rows: repeat(3, 1fr);
+      "image image"
+      "contact-bottom contact-bottom";
     grid-template-columns: repeat(2, 1fr);
-    padding: var(--size-500);
-    max-width: 80em;
-    margin-inline: auto;
   }
 }
 
 .contact-image {
   grid-area: image;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 15rem;
+  width: 100%;
+  background-image: url("../public/images/contact.jpg");
+  background-color: var(--clr-neutral-700-opaque);
+  background-blend-mode: multiply;
+  background-repeat: no-repeat;
+  background-position: 30% 60%;
+}
+
+.contact-image h1 {
+  color: var(--clr-neutral-200);
+  letter-spacing: 4px;
+  font-weight: var(--fw-bold);
+  font-size: var(--fs-700);
+}
+
+.contact-bottom {
+  grid-area: contact-bottom;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  width: 95%;
+  margin-inline: auto;
+  padding: var(--size-800) 0;
 }
 
 .contact-form {
-  grid-area: form;
-  flex-direction: column;
-  align-self: center;
-  gap: 1em;
-  max-width: 30em;
-  padding: var(--size-400);
-  border-radius: 10px;
-  background-color: var(--clr-primary-100);
+  width: 100%;
 }
 
-.contact-form-heading {
+.contact-form__heading {
   font-weight: var(--fw-bold);
   font-size: var(--fs-650);
 }
 
-.contact-form-group {
+.contact-form__group {
+  display: flex;
   flex-direction: column;
   gap: 0.5em;
 }
@@ -901,24 +975,41 @@ footer {
   resize: vertical;
 }
 
-.contact-form input,
-textarea {
-  padding: var(--size-100);
-  border: none;
-  border-radius: 5px;
-  box-shadow: 0 0 5px 2px var(--clr-box-shadow);
-}
-
-.contact-map {
-  grid-area: map
-}
-
-.contact-map iframe {
+.contact-form__recaptcha {
+  transform: scale(0.85);
+  transform-origin: 0 0;
   width: 100%;
 }
 
-.contact-details {
-  grid-area: details;
+.contact-map {
+  width: 100%;
+  min-height: 30rem;
+}
+
+
+iframe {
+  border: none;
+  width: 100%;
+  height: 100%;
+}
+
+
+
+@media(min-width: 50em) {
+  .contact-image h1 {
+    font-size: var(--fs-900);
+  }
+
+  .contact-bottom {
+    flex-direction: row;
+    justify-content: space-between;
+    width: 80%;
+    max-width: 80rem;
+  }
+
+  iframe {
+    height: 100%;
+  }
 }
 
 /* CART */
@@ -1120,7 +1211,7 @@ textarea {
   
 }
 
-/* FORMS */
+/* GENERAL FORMS STYLING */
 
 .login-container {
   flex-direction: column;
@@ -1129,49 +1220,7 @@ textarea {
   margin-top: var(--size-900);
 }
 
-form {
-  flex-direction: column;
-  gap: 1em;
-  width: 20rem;
-  padding: var(--size-600) var(--size-500);
-  border-radius: 3px;
-  box-shadow: 0px 0px 5px 2px var(--clr-box-shadow);
-}
 
-form a {
-  margin: 0;
-}
-
-form label {
-  font-size: var(--fs-400);
-}
-
-form input {
-  width: 100%;
-  margin-top: var(--size-100);
-  background-color: var(--clr-input-bg);
-  box-shadow: 0px 0px 5px var(--clr-box-shadow);
-  font-size: var(--fs-400);
-}
-
-form button {
-  width: 100%;
-  margin-top: var(--size-300);
-  color: var(--clr-neutral-100);
-  background-color: var(--clr-secondary-600);
-}
-
-form button:is(:hover, :focus-within) {
-  cursor: pointer;
-  background-color: var(--clr-neutral-900);
-}
-
-form input,
-form button {
-  border: none;
-  border-radius: 3px;
-  padding: var(--size-300);
-}
 
 
 .login-link,

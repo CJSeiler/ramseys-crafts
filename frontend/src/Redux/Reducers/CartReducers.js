@@ -44,7 +44,6 @@ export const cartReducer = (state = { cartItems:[], shippingAddress: {}, guestIn
             } else {
                 return {
                     ...state,
-                    cartItems: [...state.cartItems, item]
                 }
             }
         

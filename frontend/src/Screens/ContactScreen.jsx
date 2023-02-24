@@ -127,7 +127,7 @@ const ContactScreen = () => {
                         ref={captchaRef}
                     />
 
-                    <button type="submit" className="contact-form-button">SUBMIT</button>
+                    <button type="submit">SUBMIT</button>
                 </form>
 
             </div>

@@ -23,6 +23,10 @@ const productSchema = mongoose.Schema(
             type: Number,
             require: true,
             default: 0,
+        },
+        category: {
+            type: String,
+            require: true,
         }
     }
 )

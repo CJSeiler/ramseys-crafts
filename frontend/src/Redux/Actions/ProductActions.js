@@ -6,13 +6,13 @@ import {
     PRODUCT_DETAILS_REQUEST, 
     PRODUCT_DETAILS_SUCCESS, 
 } from "../Constants/ProductConstants"
+import axios from "axios"
 
 // PRODUCT LIST
 export const listProduct = () => async(dispatch) => {
     try {
         dispatch({ type: PRODUCT_LIST_REQUEST })
-        const response = await fetch("/api/products", { method: "GET"})
-        const data = await response.json()
+        const { data } = await axios.get("/api/products")
         dispatch({ type: PRODUCT_LIST_SUCCESS, payload: data} )
     } catch (error) {
         dispatch({
@@ -29,8 +29,7 @@ export const listProduct = () => async(dispatch) => {
 export const listSingleProduct = (id) => async(dispatch) => {
     try {
         dispatch({ type: PRODUCT_DETAILS_REQUEST })
-        const response = await fetch(`/api/products/${id}`, { method: "GET"})
-        const data = await response.json()
+        const { data } = await axios.get(`/api/products/${id}`)
         dispatch({ type: PRODUCT_DETAILS_SUCCESS, payload: data} )
     } catch (error) {
         dispatch({

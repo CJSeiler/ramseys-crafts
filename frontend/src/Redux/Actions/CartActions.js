@@ -6,11 +6,11 @@ import {
     CART_SAVE_PAYMENT_METHOD,
     CART_SAVE_GUEST_INFO,
 } from "../Constants/CartConstants"
+import axios from "axios"
 
 // ADD PRODUCT TO CART
 export const addToCart = (id, qty) => async(dispatch, getState) => {
-    const response = await fetch(`/api/products/${id}`, { method: "GET" })
-    const data = await response.json()
+    const { data } = await axios.get(`/api/products/${id}`)
 
     dispatch({
         type: CART_ADD_ITEM,
@@ -40,21 +40,24 @@ export const removeFromCart = id => (dispatch, getState) => {
 
 // UPDATE CART QUANTITY
 export const updateCartQuantity = (id, qty) => async(dispatch, getState) => {
-    const response = await fetch(`/api/products/${id}`, { method: "GET" })
-    const data = await response.json()
+    const cartItems = getState().cart.cartItems
+    const currentProduct = cartItems.find(item => item.product === id)
+    const { product, name, description, image, price, countInStock } = currentProduct 
 
-    dispatch({
-        type: CART_UPDATE_QTY,
-        payload: {
-            product: data._id,
-            name: data.name,
-            description: data.description,
-            image: data.image,
-            price: data.price,
-            countInStock: data.countInStock,
-            qty,
-        }
-    })
+    if (currentProduct) {
+        dispatch({
+            type: CART_UPDATE_QTY,
+            payload: {
+                product: product,
+                name: name,
+                description: description,
+                image: image,
+                price: price,
+                countInStock: countInStock,
+                qty: qty,
+            }
+        })
+    }
 
     localStorage.setItem("cartItems", JSON.stringify(getState().cart.cartItems))
 }

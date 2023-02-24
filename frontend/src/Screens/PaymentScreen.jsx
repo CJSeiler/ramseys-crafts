@@ -1,36 +1,34 @@
-import { useState } from "react"
-import { useNavigate } from "react-router-dom"
-import { useDispatch, useSelector } from "react-redux"
-import { savePaymentMethod } from "./../Redux/Actions/CartActions"
-import Navbar from "./../Components/Navbar"
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { savePaymentMethod } from "./../Redux/Actions/CartActions";
 
 const PaymentScreen = () => {
-    const navigate = useNavigate()
-    const dispatch = useDispatch()
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
     
-    const cart = useSelector((state) => state.cart)
-    const { shippingAddress } = cart
+    const cart = useSelector((state) => state.cart);
+    const { shippingAddress } = cart;
   
     if (!shippingAddress) {
-        navigate("/shipping")
+        navigate("/shipping");
     }
   
-    const [paymentMethod, setPaymentMethod] = useState("PayPal")
+    const [paymentMethod, setPaymentMethod] = useState("PayPal");
 
     const handleChange = e => {
-        const { value } = e.target
-        setPaymentMethod(value)
+        const { value } = e.target;
+        setPaymentMethod(value);
     }
 
     const handleSubmit = e => {
-        e.preventDefault()
-        dispatch(savePaymentMethod(paymentMethod))
-        navigate("/placeorder")
+        e.preventDefault();
+        dispatch(savePaymentMethod(paymentMethod));
+        navigate("/placeorder");
     }
 
     return (
         <>
-            <Navbar />
             <div className="payment-container flex">
                 <form className="payment-form" onSubmit={handleSubmit}>
                     <h1>SELECT PAYMENT METHOD</h1>
@@ -50,8 +48,8 @@ const PaymentScreen = () => {
                 </form>
             </div>
         </>
-    )
-}
+    );
+};
 
-export default PaymentScreen
+export default PaymentScreen;
 

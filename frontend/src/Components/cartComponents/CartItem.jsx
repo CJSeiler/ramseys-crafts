@@ -1,20 +1,20 @@
-import { Link } from "react-router-dom"
-import { useDispatch, useSelector } from "react-redux"
-import { removeFromCart, updateCartQuantity } from "../../Redux/Actions/CartActions.js"
-import { calculateItemPrice } from "../../utils.js"
-import closeMenu from "../../icons/close-menu.png"
+import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { removeFromCart, updateCartQuantity } from "../../Redux/Actions/CartActions.js";
+import { calculateItemPrice } from "../../utils.js";
+import closeMenu from "../../icons/close-menu.png";
 
-export function CartItem(props) {
-    const dispatch = useDispatch()
-    const currentItem = useSelector(state => state.cart.cartItems.find(x => x.product === props.id))
+const CartItem = (props) => {
+    const dispatch = useDispatch();
+    const currentItem = useSelector(state => state.cart.cartItems.find(x => x.product === props.id));
 
     const removeFromCartHandle = id => {
-        dispatch(removeFromCart(id))
-    }
+        dispatch(removeFromCart(id));
+    };
 
     const handleChange = e => {
-        dispatch(updateCartQuantity(props.id, Number(e.target.value)))
-    }
+        dispatch(updateCartQuantity(props.id, Number(e.target.value)));
+    };
 
     return (
         <div className="cart-item flex">
@@ -31,6 +31,7 @@ export function CartItem(props) {
             <p className="cart-item__description">{props.description}</p>
                     
             <select className="cart-item-qty-input" value={currentItem.qty} onChange={(e) => handleChange(e)}>
+                {/* creates an array with the length eqaul to the count in stock to map out the appropriate amount of select options */}
                 {[...Array(currentItem.countInStock).keys()].map((x) => (
                 <option key={x + 1} value={x + 1}>
                    Qty {x + 1}
@@ -44,8 +45,8 @@ export function CartItem(props) {
             >
                 <img src={closeMenu} alt="" />
             </button>
-        </div>      
-                 
-    )
-        
-}
+        </div>               
+    );  
+};
+
+export default CartItem;

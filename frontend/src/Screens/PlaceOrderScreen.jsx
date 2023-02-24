@@ -1,25 +1,24 @@
-import { useEffect } from "react"
-import { useDispatch, useSelector } from "react-redux"
-import { Link, useNavigate } from "react-router-dom"
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
 import { calculateShippingPrice,
          calculateTaxPrice,
          calculateCartSubtotal,
          calculateTotalOrderPrice, 
-        } from "../utils"
-import { createOrder } from "../Redux/Actions/OrderActions"
-import { ORDER_CREATE_RESET } from "../Redux/Constants/OrderConstants"
-import Navbar from "./../Components/Navbar"
-import Message from "../Components/LoadingError/Error"
-import userIcon from "../icons/user-solid.svg"
-import truckIcon from "../icons/truck-solid.svg"
-import locationIcon from "../icons/location-dot-solid.svg"
+        } from "../utils";
+import { createOrder } from "../Redux/Actions/OrderActions";
+import { ORDER_CREATE_RESET } from "../Redux/Constants/OrderConstants";
+import Message from "../Components/LoadingError/Error";
+import userIcon from "../icons/user-solid.svg";
+import truckIcon from "../icons/truck-solid.svg";
+import locationIcon from "../icons/location-dot-solid.svg";
 
 const PlaceOrderScreen = () => {
-    const dispatch = useDispatch()
-    const navigate = useNavigate()
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
     
-    const cart = useSelector(state => state.cart)
-    const userLogin = useSelector(state => state.userLogin)
+    const cart = useSelector(state => state.cart);
+    const userLogin = useSelector(state => state.userLogin);
     
     const { 
         cartItems, 
@@ -30,33 +29,33 @@ const PlaceOrderScreen = () => {
         shippingPrice, 
         taxPrice, 
         totalPrice 
-    } = cart
-    const isCartEmpty = cartItems.length === 0
+    } = cart;
+    const isCartEmpty = cartItems.length === 0;
     
-    const { userInfo } = userLogin
-    const isLoggedIn = userInfo ? true : false
+    const { userInfo } = userLogin;
+    const isLoggedIn = userInfo ? true : false;
 
-    const orderCreate = useSelector((state) => state.orderCreate)
-    const { order, success, error } = orderCreate
+    const orderCreate = useSelector((state) => state.orderCreate);
+    const { order, success, error } = orderCreate;
     
     useEffect(() => {
         if(!isLoggedIn && !guestInfo) {
-            navigate("/guestcheckout")
+            navigate("/guestcheckout");
         }
-    }, [isLoggedIn, guestInfo, navigate])
+    }, [isLoggedIn, guestInfo, navigate]);
 
     useEffect(() => {
         if (success) {
           navigate(`/order/${order._id}`)
           dispatch({ type: ORDER_CREATE_RESET })
         }
-      }, [dispatch, navigate, success, order])
+      }, [dispatch, navigate, success, order]);
 
     const handlePlaceOrder = async () => {
         if(!isLoggedIn) {
             // navigate to guest confirmation screen
-            console.log("guest order placed")
-            navigate("/orderconfirmation")
+            console.log("guest order placed");
+            navigate("/orderconfirmation");
         } else {
             dispatch(createOrder({
                 orderItems: cartItems,
@@ -66,15 +65,15 @@ const PlaceOrderScreen = () => {
                 shippingPrice: Number(shippingPrice),
                 taxPrice: Number(taxPrice),
                 totalPrice: Number(totalPrice),
-            }))
+            }));
         }
-    }
+    };
     
     // Calculate Price
-    cart.subtotalPrice = calculateCartSubtotal(cartItems)
-    cart.shippingPrice = calculateShippingPrice(cartItems.length, cart.subtotalPrice)
-    cart.taxPrice = calculateTaxPrice(cart.subtotalPrice)
-    cart.totalPrice = calculateTotalOrderPrice(cart.subtotalPrice, cart.shippingPrice, cart.taxPrice)
+    cart.subtotalPrice = calculateCartSubtotal(cartItems);
+    cart.shippingPrice = calculateShippingPrice(cartItems.length, cart.subtotalPrice);
+    cart.taxPrice = calculateTaxPrice(cart.subtotalPrice);
+    cart.totalPrice = calculateTotalOrderPrice(cart.subtotalPrice, cart.shippingPrice, cart.taxPrice);
 
     const orderItemsElements = cartItems.map(item => {
         return (
@@ -99,14 +98,13 @@ const PlaceOrderScreen = () => {
                     </div>
                 </div>
             </div>
-        )
-    })
+        );
+    });
 
     /* checking userInfo allows the useEffect function to run without an error */
     return (
         (userInfo || guestInfo) && 
         <>
-            <Navbar />
             <div className="order-container">
                 <div className="order-customer-info-container flex">
                     <div className="order-customer-info flex">
@@ -180,7 +178,7 @@ const PlaceOrderScreen = () => {
 
             </div>
         </>
-    )
-}
+    );
+};
 
-export default PlaceOrderScreen
+export default PlaceOrderScreen;

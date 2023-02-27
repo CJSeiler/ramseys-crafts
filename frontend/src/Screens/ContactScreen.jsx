@@ -59,11 +59,11 @@ const ContactScreen = () => {
 
     return (
         <div className="contact-container">
-            <div className="contact-image">
+            <div className="contact-image banner-image">
                 <h1>CONTACT</h1>
             </div>
 
-            <div className="contact-bottom">
+            <section className="contact-bottom">
                 <div className="contact-map">
                     <iframe 
                         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d56365.58588564635!2d-82.60796461582365!3d27.99851225557447!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88c2ea1c17534867%3A0x1ffcff0c10a1dfe5!2sTown%20&#39;N&#39;%20Country%2C%20FL!5e0!3m2!1sen!2sus!4v1671168235374!5m2!1sen!2sus" 
@@ -127,10 +127,10 @@ const ContactScreen = () => {
                         ref={captchaRef}
                     />
 
-                    <button type="submit">SUBMIT</button>
+                    <button type="submit">SEND</button>
                 </form>
 
-            </div>
+            </section>
         </div>
     );
 };

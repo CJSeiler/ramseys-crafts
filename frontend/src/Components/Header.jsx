@@ -45,8 +45,10 @@ const Header = () => {
                         </div>
 
                         <div className="header-icons__cart-container">
-                            <Link to="/cart" aria-label="shopping cart link"><img className="header-cart-icon" src={cartIcon} alt="cart icon"/></Link>
-                            {cartItems.length === 0 ? null : <p className="header-icons__cart-indicator">{cartItems.length}</p>}
+                            <Link to="/cart" aria-label="shopping cart link">
+                                <img className="header-cart-icon" src={cartIcon} alt="cart icon"/>
+                                {cartItems.length === 0 ? null : <p className="header-icons__cart-indicator" aria-label="cart items quantity">{cartItems.length}</p>}
+                            </Link>
                         </div>
                     </div>
 

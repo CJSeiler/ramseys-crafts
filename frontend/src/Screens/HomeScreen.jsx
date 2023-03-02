@@ -4,8 +4,8 @@ const HomeScreen = () => {
     return (
         <div className="home-wrapper">
           <div className="hero">
-            <h1 className="heading bold">Ramsey's Crafts</h1>
-            <p className="subheading">Handmade Crochet Clothing</p>
+            <h1 className="hero__heading bold">Ramsey's Crafts</h1>
+            <p className="hero__subheading">Handmade Crochet Clothing</p>
             <Link className="hero__link" to="/products">Shop Now</Link>
           </div>
 

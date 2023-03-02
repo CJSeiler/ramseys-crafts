@@ -1,6 +1,6 @@
 const Loading = () => {
     return (
-        <div className="loading-container flex">
+        <div className="loading-container">
             <div
                 className=""
                 role="status"

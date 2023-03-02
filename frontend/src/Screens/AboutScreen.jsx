@@ -1,7 +1,7 @@
 const AboutScreen = () => {
     return (
         <div className="about-container">
-            <div className="about-image banner-image">
+            <div className="about-banner banner-image">
                 <h1>ABOUT</h1>
             </div>
             <section>

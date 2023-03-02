@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { listProduct } from "../Redux/Actions/ProductActions";
 import ProductCard from "../Components/ProductCard";
@@ -57,27 +57,75 @@ const Products = () => {
             });
             
     if (!loading) {
-        emptyElement = productsElements.length === 0 ? <p>Oops... No products found.</p> : null;
+        emptyElement = productsElements.length === 0 ? <Message variant="alert-danger">Oops... No products found.</Message> : null;
     }
-            return (
-                <>
-            <div className="products-container">
-                <h2 className="products-heading">Products</h2>
-                {/* render Loading if loading is true
-                    render Message if loading is false but error is a truthy value
-                    render productsElements if loading is false and error is undefined
-                */}
-                {loading ? 
-                    <Loading /> 
-                    : 
-                    error ? 
-                        <Message variant="alert-danger">{error}</Message> 
-                        :
-                        productsElements
-                }
-                {emptyElement}
+
+    return (
+        <div className="products-container">
+            <div className="products-banner banner-image">
+                <h1>PRODUCTS</h1>
             </div>
-        </>
+
+            <section>
+                <div className="products-filter">
+                    <h3>Categories</h3>
+                    <ul className="products-categories" aria-label="products categories">
+                        <li>
+                            <Link 
+                                className="products-categories__link" 
+                                to="/products" 
+                                role="button"
+                                aria-current={category  ? "false" : "page"}
+                            >All</Link>
+                        </li>
+
+                        <li>
+                            <Link 
+                                className="products-categories__link" 
+                                to="/products?category=hat"
+                                aria-current={category === "hat" ? "page" : "false"}
+                                role="button"
+                            >Hats</Link>
+                        </li>
+
+                        <li>
+                            <Link 
+                                className="products-categories__link" 
+                                to="/products?category=sweater"
+                                aria-current={category === "sweater" ? "page" : "false"}
+                                role="button"
+                            >Sweaters</Link>
+                        </li>
+
+                        <li>
+                            <Link 
+                                className="products-categories__link" 
+                                to="/products?category=yarn" 
+                                aria-current={category === "yarn" ? "page" : "false"}
+                                role="button"
+                            >Yarn</Link>
+                        </li>
+                    </ul>
+                </div>
+
+                <div className="products-list">
+                    {/* render Loading if loading is true
+                        render Message if loading is false but error is a truthy value
+                        render productsElements if loading is false and error is undefined
+                    */}
+                    {loading ? 
+                        <Loading /> 
+                        : 
+                        error ? 
+                            <Message variant="alert-danger">{error}</Message> 
+                            :
+                            productsElements
+                    }
+                    {emptyElement}
+                </div>
+
+            </section>
+        </div>
     );
 };
 

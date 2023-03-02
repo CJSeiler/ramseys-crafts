@@ -59,7 +59,7 @@ const ContactScreen = () => {
 
     return (
         <div className="contact-container">
-            <div className="contact-image banner-image">
+            <div className="contact-banner banner-image">
                 <h1>CONTACT</h1>
             </div>
 

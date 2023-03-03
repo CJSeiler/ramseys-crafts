@@ -56,7 +56,6 @@ const ProductDetails = () => {
                                         id="quantity"
                                         value={qty}
                                         onChange={e => handleChange(e)}
-                                        aria-expanded="false"
                                         >
                                         {/* generates the amount of select options based on the
                                             the amount of stock available  */}

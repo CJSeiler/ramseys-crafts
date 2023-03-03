@@ -17,33 +17,35 @@ const CartItem = (props) => {
     };
 
     return (
-        <div className="cart-item flex">
-            <img className="cart-item-image" src="../../../public/images/shaw.png" alt={props.name} />
+        <div className="cart-item">
+            <img className="cart-item__image" src={props.image} alt={props.name} />
 
-            <p className="cart-item-price bold">${calculateItemPrice(currentItem.qty, props.price)}</p>
-            
-            <h3 className="cart-item__name bold">
-                <Link to={`/products/${props.id}`} className="cart-item__link">
+            <h3 className="cart-item__name">
+                <Link to={`/products/${props.id}`} className="cart-item__link" aria-label="link to product">
                     {props.name}
                 </Link> 
             </h3>
 
-            <p className="cart-item__description">{props.description}</p>
-                    
-            <select className="cart-item-qty-input" value={currentItem.qty} onChange={(e) => handleChange(e)}>
-                {/* creates an array with the length eqaul to the count in stock to map out the appropriate amount of select options */}
-                {[...Array(currentItem.countInStock).keys()].map((x) => (
-                <option key={x + 1} value={x + 1}>
-                   Qty {x + 1}
-                </option>
-                ))}
-            </select>
+            <div>
+                <label for="qty">Quantity: </label>
+                <select id="qty" className="cart-item__qty-input" value={currentItem.qty} onChange={(e) => handleChange(e)}>
+                    {/* creates an array with the length eqaul to the count in stock to map out the appropriate amount of select options */}
+                    {[...Array(currentItem.countInStock).keys()].map((x) => (
+                    <option key={x + 1} value={x + 1}>
+                    {x + 1}
+                    </option>
+                    ))}
+                </select>
+                <p className="sr-only">use the arrow keys to navigate the quantity options and press enter to select</p>
+            </div>
+
+            <p className="cart-item__price">${calculateItemPrice(currentItem.qty, props.price)}</p>
 
             <button 
-                className="cart-item-remove-button"
+                className="cart-item__remove-button"
                 onClick={() => removeFromCartHandle(props.id)}
             >
-                <img src={closeMenu} alt="" />
+                <img src={closeMenu} alt="remove item from cart" />
             </button>
         </div>               
     );  

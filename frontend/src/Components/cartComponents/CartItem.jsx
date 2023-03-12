@@ -27,7 +27,7 @@ const CartItem = (props) => {
             </h3>
 
             <div>
-                <label for="qty">Quantity: </label>
+                <label htmlFor="qty">Quantity: </label>
                 <select id="qty" className="cart-item__qty-input" value={currentItem.qty} onChange={(e) => handleChange(e)}>
                     {/* creates an array with the length eqaul to the count in stock to map out the appropriate amount of select options */}
                     {[...Array(currentItem.countInStock).keys()].map((x) => (

@@ -40,37 +40,36 @@ const GuestCheckoutScreen = () => {
     }
 
     return (
-        <>
-            <div className="login-container flex">
-                <form className="flex" onSubmit={(e) => handleSubmit(e)}>
-                    <h1>Guest Checkout</h1>
-                    <label htmlFor="name">
-                        Name:
-                        <input
-                            id="name" 
-                            type="text" 
-                            name="name" 
-                            value={formData.name} 
-                            onChange={(e) => handleChange(e)}
-                            required 
-                        />
-                    </label>
+        <div className="guest-container">
+            <form className="guest-checkout-form" onSubmit={(e) => handleSubmit(e)}>
+                <h1>GUEST CHECKOUT</h1>
+                
+                <div className="guest-checkout-form__group">
+                    <label htmlFor="name">Name:</label>
+                    <input
+                        id="name" 
+                        type="text" 
+                        name="name" 
+                        value={formData.name} 
+                        onChange={(e) => handleChange(e)}
+                        required 
+                    />
+                </div>
 
-                    <label htmlFor="email">
-                        Email
-                        <input 
-                            type="email" 
-                            name="email" 
-                            value={formData.email} 
-                            onChange={(e) => handleChange(e)}
-                            required 
-                        />
-                    </label>
-                    
-                    <button>CONTINUE</button>
-                </form>
-            </div>
-        </>
+                <div className="guest-checkout-form__group">
+                    <label htmlFor="email">Email:</label>
+                    <input 
+                        type="email" 
+                        name="email" 
+                        value={formData.email} 
+                        onChange={(e) => handleChange(e)}
+                        required 
+                    />
+                </div>
+                
+                <button type="submit">CONTINUE</button>
+            </form>
+        </div>
     );
 };
 

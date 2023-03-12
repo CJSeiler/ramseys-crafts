@@ -77,24 +77,24 @@ const PlaceOrderScreen = () => {
 
     const orderItemsElements = cartItems.map(item => {
         return (
-            <div className="order-items-info flex" key={item.product}>
-                <img src="../../public/images/shaw.png" alt={item.name} height="100px" width="100px"/>
+            <div className="items-info" key={item.product}>
+                <img src={item.image} alt={item.name}/>
                 
-                <div className="order-items-info-right flex">
-                    <p className="order-item-name">
-                        <Link to={`/products/${item.product}`} className="order-item-link">
+                <div className="items-info-right">
+                    <p className="item-name">
+                        <Link to={`/products/${item.product}`} className="item-link">
                             {item.name}
                         </Link>
                     </p>
                     
-                    <div className="order-item-quantity">
-                        <p className="order-item-quantity__label">QUANTITY:</p>
-                        <p className="bold">{item.qty}</p>
+                    <div className="item-quantity">
+                        <p className="item-quantity__label">QUANTITY:</p>
+                        <p>{item.qty}</p>
                     </div>
 
-                    <div className="order-item-subtotal">
-                        <p className="order-item-subtotal__label">SUBTOTAL:</p>
-                        <p className="bold">${item.price * item.qty / 100}</p>
+                    <div className="item-subtotal">
+                        <p className="item-subtotal__label">SUBTOTAL:</p>
+                        <p>${item.price * item.qty / 100}</p>
                     </div>
                 </div>
             </div>
@@ -104,15 +104,15 @@ const PlaceOrderScreen = () => {
     /* checking userInfo allows the useEffect function to run without an error */
     return (
         (userInfo || guestInfo) && 
-        <>
+        
             <div className="order-container">
-                <div className="order-customer-info-container flex">
-                    <div className="order-customer-info flex">
-                        <div className="order-customer-info__img flex">
-                            <img src={userIcon} alt="user icon"/>
+                <section className="customer-info-container">
+                    <div className="customer-info">
+                        <div className="customer-info__img">
+                            <img  src={userIcon} alt="user icon"/>
                         </div>
 
-                        <div className="order-customer-info__details">
+                        <div className="customer-info__details">
                             <h2>Customer</h2>
                             
                             <p>{userInfo ? userInfo.name : guestInfo.name}</p>
@@ -120,51 +120,52 @@ const PlaceOrderScreen = () => {
                         </div>
                     </div>
 
-                    <div className="order-customer-info flex">
-                        <div className="order-customer-info__img flex">
+                    <div className="customer-info">
+                        <div className="customer-info__img">
                             <img src={truckIcon} alt="truck icon"/>
                         </div>
-                        <div className="order-customer-info__details">
+
+                        <div className="customer-info__details">
                             <h2>Order info</h2>
                             <p>Shipping: {shippingAddress.city}</p>
                             <p>Payment: {paymentMethod}</p>
                         </div>
                     </div>
 
-                    <div className="order-customer-info flex">
-                        <div className="order-customer-info__img flex">
+                    <div className="customer-info">
+                        <div className="customer-info__img">
                             <img src={locationIcon} alt="location icon"/>
                         </div>
 
-                        <div className="order-customer-info__details">
+                        <div className="customer-info__details">
                             <h2>Deliver to</h2>
                             <p>Address: {shippingAddress.address}</p>
                         </div>
                     </div>
-                </div>
+                </section>
 
-                <div className="order-items-container flex">
+                <section className="items-container">
                     {orderItemsElements}
-                </div>
+                </section>
 
-                <div className="order-price-info">
+                <div className="price-info">
                     {error && (
-                        <div className="order-price-info__alert">
+                        <div className="price-info__alert">
                             <Message variant="alert-danger">{error}</Message>
                         </div>
                     )}
 
-                    <p className="order-price-info__label">Products</p>
-                    <p className="order-price-info__amount">${cart.subtotalPrice}</p>
+                    <p className="price-info__label">Products</p>
+                    <p className="price-info__amount">${cart.subtotalPrice}</p>
 
-                    <p className="order-price-info__label">Shipping</p>
-                    <p className="order-price-info__amount">${cart.shippingPrice}</p>
+                    <p className="price-info__label">Shipping</p>
+                    <p className="price-info__amount">${cart.shippingPrice}</p>
 
-                    <p className="order-price-info__label">Tax</p>
-                    <p className="order-price-info__amount">${cart.taxPrice}</p>
+                    <p className="price-info__label">Tax</p>
+                    <p className="price-info__amount">${cart.taxPrice}</p>
 
-                    <p className="order-price-info__label">Total</p>
-                    <p className="order-price-info__amount">${cart.totalPrice}</p>
+                    <p className="price-info__label">Total</p>
+                    <p className="price-info__amount">${cart.totalPrice}</p>
 
                     
                     <button 
@@ -175,9 +176,8 @@ const PlaceOrderScreen = () => {
                         PLACE ORDER
                     </button>
                 </div>
-
             </div>
-        </>
+        
     );
 };
 

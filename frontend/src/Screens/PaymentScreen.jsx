@@ -28,26 +28,26 @@ const PaymentScreen = () => {
     }
 
     return (
-        <>
-            <div className="payment-container flex">
-                <form className="payment-form" onSubmit={handleSubmit}>
-                    <h1>SELECT PAYMENT METHOD</h1>
-                    <div className="radio-container flex">
-                        <input
-                            className="payment-form-input"
-                            type="radio"
-                            value="PayPal"
-                            onChange={e => handleChange(e)}
-                            checked={paymentMethod === "PayPal"}
-                        />
+        <div className="payment-container">
+            <form className="payment-form" onSubmit={handleSubmit}>
+                <h1>SELECT PAYMENT METHOD</h1>
+                
+                <div className="radio-container">
+                    <input
+                        id="payment"
+                        className="payment-form-input"
+                        type="radio"
+                        value="PayPal"
+                        onChange={e => handleChange(e)}
+                        checked={paymentMethod === "PayPal"}
+                    />
 
-                        <label className="payment-form-label">PayPal or Credit Card</label>
-                    </div>
+                    <label htmlFor="payment" className="payment-form-label">PayPal or Credit Card</label>
+                </div>
 
-                    <button>Continue</button>
-                </form>
-            </div>
-        </>
+                <button type="submit">Continue</button>
+            </form>
+        </div>
     );
 };
 

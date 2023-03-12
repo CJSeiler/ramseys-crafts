@@ -1,10 +1,10 @@
-import React, { useState, useEffect, useRef } from "react"
-import { useDispatch, useSelector } from "react-redux"
-import Toast from "../LoadingError/Toast"
-import Message from "../LoadingError/Error"
-import Loading from "./../LoadingError/Loading"
-import { toast } from "react-toastify"
-import { updateUserProfile } from "../../Redux/Actions/UserActions"
+import { useState, useEffect, useRef } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import Toast from "../LoadingError/Toast";
+import Message from "../LoadingError/Error";
+import Loading from "./../LoadingError/Loading";
+import { toast } from "react-toastify";
+import { updateUserProfile } from "../../Redux/Actions/UserActions";
 
 const ProfileUpdateForm = () => {
     const [formData, setFormData] = useState({
@@ -69,51 +69,52 @@ const ProfileUpdateForm = () => {
             {updateLoading && <Loading />}
             <form className="profile-update-form" onSubmit={handleSubmit}>
                     <label>
-                            Name:
-                            <input 
-                                type="text" 
-                                name="name"
-                                // value defaults to empty string to prevent uncontrolled to controlled input error 
-                                value={formData.name || ""} 
-                                onChange={(e) => handleChange(e)}
-                                required 
-                            />
-                        </label>
+                        Name:
+                        <input 
+                            type="text" 
+                            name="name"
+                            // value defaults to empty string to prevent uncontrolled to controlled input error 
+                            value={formData.name || ""} 
+                            onChange={(e) => handleChange(e)}
+                            required 
+                        />
+                    </label>
 
-                        <label>
-                            Email:
-                            <input 
-                                type="email" 
-                                name="email" 
-                                value={formData.email || ""} 
-                                onChange={(e) => handleChange(e)}
-                                required 
-                            />
-                        </label>
+                    <label>
+                        Email:
+                        <input 
+                            type="email" 
+                            name="email" 
+                            value={formData.email || ""} 
+                            onChange={(e) => handleChange(e)}
+                            required 
+                        />
+                    </label>
 
-                        <label>
-                            Password:
-                            <input 
-                                type="password" 
-                                name="password" 
-                                value={formData.password || ""} 
-                                onChange={(e) => handleChange(e)}
-                                required 
-                            />
-                        </label>
+                    <label>
+                        Password:
+                        <input 
+                            type="password" 
+                            name="password" 
+                            value={formData.password || ""} 
+                            onChange={(e) => handleChange(e)}
+                            required 
+                        />
+                    </label>
 
-                        <label>
-                            Confirm Password:
-                            <input 
-                                type="password" 
-                                name="confirmPassword" 
-                                value={formData.confirmPassword || ""} 
-                                onChange={(e) => handleChange(e)}
-                                required 
-                            />
-                        </label>
-                        <button>UPDATE PROFILE</button>
-                    </form>
+                    <label>
+                        Confirm Password:
+                        <input 
+                            type="password" 
+                            name="confirmPassword" 
+                            value={formData.confirmPassword || ""} 
+                            onChange={(e) => handleChange(e)}
+                            required 
+                        />
+                    </label>
+
+                    <button tpye="submit">UPDATE PROFILE</button>
+            </form>
         </>
     );
 };

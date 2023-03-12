@@ -42,10 +42,7 @@ const CartScreen = () => {
 
                 <p className="cart-total-price">Subtotal: ${calculateCartSubtotal(cartItems)}</p>
 
-                <div className="cart-links">
-                    <Link to="/products" className="cart-shopping-link">CONTINUE SHOPPING</Link>
-                    <Link to="/shipping" className="cart-checkout-link">CHECKOUT</Link>
-                </div>
+                <Link to="/shipping" className="cart-checkout-link" aria-label="link to checkout">CHECKOUT</Link>
             </div>
         );
 };

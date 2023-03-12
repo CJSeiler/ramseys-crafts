@@ -35,46 +35,48 @@ const ShippingScreen = () => {
     }
 
     return (
-        <>
-            <div className="shipping-container flex">
-                <form className="shipping-form flex" onSubmit={handleSubmit}>
-                    <h1>DELIVERY ADDRESS</h1>
+        <div className="shipping-container">
+            <form className="shipping-form" onSubmit={handleSubmit}>
+                <h1>DELIVERY ADDRESS</h1>
+                <div className="shipping-form__group">
+                    <label htmlFor="address">Address:</label>
+                    <input 
+                        type="text" 
+                        id="address"
+                        name="address" 
+                        value={formData.address} 
+                        onChange={(e) => handleChange(e)}
+                        required 
+                    />
+                </div>
 
-                    <label>
-                        Address:
-                        <input 
-                            type="text" 
-                            name="address" 
-                            value={formData.address} 
-                            onChange={(e) => handleChange(e)}
-                            required 
-                        />
-                    </label>
-                    <label>
-                        City:
-                        <input 
-                            type="text" 
-                            name="city" 
-                            value={formData.city} 
-                            onChange={(e) => handleChange(e)}
-                            required 
-                        />
-                    </label>
-                    <label>
-                        Postal Code:
-                        <input 
-                            type="text" 
-                            name="postalCode" 
-                            value={formData.postalCode} 
-                            onChange={(e) => handleChange(e)}
-                            maxLength="5"
-                            required 
-                        />
-                    </label>
-                    <button>CONTINUE</button>               
-                </form>
-            </div>
-        </>
+                <div className="shipping-form__group">
+                    <label htmlFor="city">City:</label>
+                    <input 
+                        type="text"
+                        id="city"
+                        name="city" 
+                        value={formData.city} 
+                        onChange={(e) => handleChange(e)}
+                        required 
+                    />
+                </div>
+
+                <div className="shipping-form__group">
+                    <label htmlFor="postal">Postal Code:</label>
+                    <input 
+                        type="text"
+                        id="postal"
+                        name="postalCode" 
+                        value={formData.postalCode} 
+                        onChange={(e) => handleChange(e)}
+                        maxLength="5"
+                        required 
+                    />
+                </div>
+                <button type="submit">CONTINUE</button>               
+            </form>
+        </div>
     );
 };
 

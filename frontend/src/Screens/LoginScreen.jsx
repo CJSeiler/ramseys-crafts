@@ -18,7 +18,7 @@ const LoginScreen = () => {
 
     useEffect(() => {
         if (userInfo) {
-            navigate("/")
+            navigate("/profile")
         }
     }, [navigate, userInfo]);
 
@@ -39,39 +39,41 @@ const LoginScreen = () => {
     };
 
     return (
-        <>
-            <div className="login-container flex">
-                {error && <Message variant={"alert-danger"}>{error}</Message>}
-                {loading && <Loading />}
-                <form className="flex" onSubmit={(e) => handleSubmit(e)}>
-                    <label>
-                        Email:
-                        <input 
-                            type="email" 
-                            name="email" 
-                            value={formData.email} 
-                            onChange={(e) => handleChange(e)}
-                            required 
-                        />
-                    </label>
-                    <label>
-                        Password:
-                        <input 
-                            type="password" 
-                            name="password" 
-                            value={formData.password} 
-                            onChange={(e) => handleChange(e)}
-                            required 
-                        />
-                    </label>
-                    
-                    <button>LOGIN</button>
-                    <Link to="/register">
-                        <p className="login-link">Create Account</p>
-                    </Link>
-                </form>
-            </div>
-        </>
+        <div className="login-container">
+            {error && <Message variant={"alert-danger"}>{error}</Message>}
+            {loading && <Loading />}
+            <form className="login-form" onSubmit={(e) => handleSubmit(e)}>
+                <div className="login-form__group">
+                    <label htmlFor="email">Email:</label>
+                    <input 
+                        type="email"
+                        id="email" 
+                        name="email" 
+                        value={formData.email} 
+                        onChange={(e) => handleChange(e)}
+                        required 
+                    />
+                </div>
+
+                <div className="login-form__group">
+                    <label htmlFor="password">Password:</label>
+                    <input 
+                        type="password"
+                        id="password" 
+                        name="password" 
+                        value={formData.password} 
+                        onChange={(e) => handleChange(e)}
+                        required 
+                    />
+                </div>
+                
+                <button type="submit">LOGIN</button>
+
+                <Link to="/register" aria-label="link to create acccount">
+                    <p className="login-link">Create Account</p>
+                </Link>
+            </form>
+        </div>
     );
 };
 

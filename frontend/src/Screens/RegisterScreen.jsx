@@ -50,63 +50,65 @@ const RegisterScreen = () => {
     }
         
     return (
-        <>
-            <div className="register-container flex">
-                {error && <Message variant={"alert-danger"}>{error}</Message>}
-                {loading && <Loading />}
+        <div className="register-container">
+            {error && <Message variant={"alert-danger"}>{error}</Message>}
+            {loading && <Loading />}
 
-                <form className="register-form flex" onSubmit={(e) => handleSubmit(e)}>
-                    <label>
-                        Name:
-                        <input 
-                            type="text" 
-                            name="name" 
-                            value={formData.name} 
-                            onChange={(e) => handleChange(e)}
-                            required 
-                        />
-                    </label>
+            <form className="register-form" onSubmit={(e) => handleSubmit(e)}>
+                <div className="register-form__group">
+                    <label htmlFor="name">Name:</label>
+                    <input 
+                        type="text"
+                        id="name" 
+                        name="name" 
+                        value={formData.name} 
+                        onChange={(e) => handleChange(e)}
+                        required 
+                    />
+                </div>
 
-                    <label>
-                        Email:
-                        <input 
-                            type="email" 
-                            name="email" 
-                            value={formData.email} 
-                            onChange={(e) => handleChange(e)}
-                            required 
-                        />
-                    </label>
+                <div className="register-form__group">
+                    <label htmlFor="email">Email:</label>
+                    <input 
+                        type="email"
+                        id="email" 
+                        name="email" 
+                        value={formData.email} 
+                        onChange={(e) => handleChange(e)}
+                        required 
+                    />
+                </div>
 
-                    <label>
-                        Password:
-                        <input 
-                            type="password" 
-                            name="password" 
-                            value={formData.password} 
-                            onChange={(e) => handleChange(e)}
-                            required 
-                        />
-                    </label>
+                <div className="register-form__group">
+                    <label htmlFor="password">Password:</label>
+                    <input 
+                        type="password" 
+                        id="password"
+                        name="password" 
+                        value={formData.password} 
+                        onChange={(e) => handleChange(e)}
+                        required 
+                    />
+                </div>
 
-                    <label>
-                        Confirm Password:
-                        <input 
-                            type="password" 
-                            name="confirmPassword" 
-                            value={confirmPassword} 
-                            onChange={(e) => handleChange(e)}
-                            required 
-                        />
-                    </label>
+                <div className="register-form__group">
+                    <label htmlFor="confirmPassword">Confirm Password:</label>
+                    <input 
+                        type="password" 
+                        id="confirmPassword"
+                        name="confirmPassword" 
+                        value={confirmPassword} 
+                        onChange={(e) => handleChange(e)}
+                        required 
+                    />
+                </div>
 
-                    <button className="register-form-btn">REGISTER</button>
-                    <Link to="/login" className="register-form-link">
-                        <p>Already have an account? Sign in!</p>
-                    </Link>
-                </form>
-            </div>
-        </>
+                <button className="register-form-btn" type="submit">REGISTER</button>
+                <Link to="/login" className="register-form-link" aria-label="link to register">
+                    <p>Already have an account? Sign in!</p>
+                </Link>
+            </form>
+        </div>
     );
 };
 

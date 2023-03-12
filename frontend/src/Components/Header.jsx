@@ -36,7 +36,10 @@ const Header = () => {
                         </a>
                     </div>
 
-                    <Link to="/"><img className="header-logo" src="/images/logo.png" alt="store logo"/></Link>
+                    <div>
+                        <Link to="/"><img className="header-logo" src="/images/logo.png" alt="store logo link to homepage" tabIndex="0"/></Link>
+
+                    </div>
 
                     <div className="header-icons"> 
                         {/* wrapped in divs to prevent clicking the space around icon from activating the link*/}

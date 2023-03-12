@@ -51,7 +51,7 @@ const ProductDetails = () => {
                                 <p className="product-description">{description}</p>
 
                                 <div className="product-quantity-container">
-                                    <label for="quantity" className="sr-only">Quantity: </label>
+                                    <label htmlFor="quantity" className="sr-only">Quantity: </label>
                                     <select
                                         id="quantity"
                                         value={qty}

@@ -15,7 +15,7 @@ import {
     USER_UPDATE_PROFILE_SUCCESS,
     USER_UPDATE_PROFILE_FAIL,
 } from "./../Constants/UserConstants";
-import axios from "axios"
+import axios from "axios";
 
 export const login = (email, password) => async(dispatch) => {
     try {
@@ -99,7 +99,7 @@ export const getUserDetails = (id) => async(dispatch, getState) => {
             ? error.response.data.message
             : error.message
         
-            // "Not authorized, token failed" is the error message generated from protect middleware function
+            // "Not authorized, token failed" is generated from protect middleware function
             if (message === "Not authorized, token failed") {
                 dispatch(logout())
             }
@@ -112,7 +112,6 @@ export const getUserDetails = (id) => async(dispatch, getState) => {
 }
 
 // UPDATE PROFILE
-
 export const updateUserProfile = (user) => async(dispatch, getState) => {
     try {
         dispatch({ type: USER_UPDATE_PROFILE_REQUEST })

@@ -14,7 +14,7 @@ const PaymentScreen = () => {
         navigate("/shipping");
     }
   
-    const [paymentMethod, setPaymentMethod] = useState("PayPal");
+    const [paymentMethod, setPaymentMethod] = useState("Credit Card");
 
     const handleChange = e => {
         const { value } = e.target;
@@ -37,12 +37,12 @@ const PaymentScreen = () => {
                         id="payment"
                         className="payment-form-input"
                         type="radio"
-                        value="PayPal"
+                        value="Credit Card"
                         onChange={e => handleChange(e)}
-                        checked={paymentMethod === "PayPal"}
+                        checked={paymentMethod === "Credit Card"}
                     />
 
-                    <label htmlFor="payment" className="payment-form-label">PayPal or Credit Card</label>
+                    <label htmlFor="payment" className="payment-form-label">Credit Card</label>
                 </div>
 
                 <button type="submit">Continue</button>

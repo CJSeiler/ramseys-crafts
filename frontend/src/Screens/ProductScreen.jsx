@@ -32,51 +32,51 @@ const ProductDetails = () => {
     const { name, image, description, price } = product;
 
     return (
-        /* render Loading if loading is true
-            render Message if loading is false but error is a truthy value
-            render product if loading is false and error is undefined
-        */
-            loading ? 
-                <Loading /> 
-                : 
-                error ? 
-                    <Message variant="alert-danger">{error}</Message> 
-                    :
-                    (
-                        <div className="product-container">
-                            <img className="product-image" src={image} alt={name}/>
-                            <div className="product-container__right">
-                                <h3 className="product-name">{name}</h3>
-                                <p className="product-price">${price / 100}</p>
-                                <p className="product-description">{description}</p>
+        loading ? 
+            <Loading /> 
+            : 
+            true ?
+                <div className="product-screen__alert">
+                    <Message variant="alert-danger">{error}this is your message</Message> 
+                </div> 
+                :
+                <div className="product-container">
+                    <img className="product-image" src={image} alt={name}/>
+                    <div className="product-container__right">
+                        <h3 className="product-name">{name}</h3>
+                        <p className="product-price">${price / 100}</p>
+                        <p className="product-description">{description}</p>
 
-                                <div className="product-quantity-container">
-                                    <label htmlFor="quantity" className="sr-only">Quantity: </label>
-                                    <select
-                                        id="quantity"
-                                        value={qty}
-                                        onChange={e => handleChange(e)}
-                                        >
-                                        {/* generates the amount of select options based on the
-                                            the amount of stock available  */}
-                                        {[...Array(product.countInStock).keys()].map(
-                                            (x) => (
-                                            <option key={x + 1} value={x + 1}>
-                                                {x + 1}
-                                            </option>
-                                            )
-                                        )}
-                                    </select>
-                                    <p className="sr-only">use the arrow keys to navigate the quantity options and press enter to select</p>
+                        <div className="product-quantity-container">
+                            <label htmlFor="quantity" className="sr-only">Quantity: </label>
 
-                                    <button
-                                        className="add-to-cart-button"
-                                        onClick={(e)=> addToCartHandle(e)}
-                                    >ADD TO CART</button>
-                                </div> { /* closes product-quantity-container */}
-                            </div> {/* closes product-container__right */}
-                        </div> /* closes product-container*/
-                    )
+                            <select
+                                id="quantity"
+                                value={qty}
+                                onChange={e => handleChange(e)}
+                                >
+                                {/* generates the amount of select options based on the
+                                    the amount of stock available  */}
+                                {[...Array(product.countInStock).keys()].map(
+                                    (x) => (
+                                    <option key={x + 1} value={x + 1}>
+                                        {x + 1}
+                                    </option>
+                                    )
+                                )}
+                            </select>
+
+                            <p className="sr-only">use the arrow keys to navigate the quantity options and press enter to select</p>
+
+                            <button
+                                className="add-to-cart-button"
+                                onClick={(e)=> addToCartHandle(e)}
+                            >
+                                ADD TO CART
+                            </button>
+                        </div> { /* closes product-quantity-container */}
+                    </div> {/* closes product-container__right */}
+                </div> /* closes product-container*/
     );
 };
 

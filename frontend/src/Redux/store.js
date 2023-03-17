@@ -8,10 +8,13 @@ import { cartReducer } from "./Reducers/CartReducers"
 import { 
     userLoginReducer, 
     userRegisterReducer, 
-    userDetailsReducer,
+    // userDetailsReducer,
     userUpdateProfileReducer, 
 } from "./Reducers/UserReducer"
-import { orderCreateReducer } from "./Reducers/OrderReducers"
+import { 
+    orderCreateReducer,
+    orderListReducer
+ } from "./Reducers/OrderReducers"
 
 const initialState = {
     cart: {
@@ -37,9 +40,10 @@ const store = configureStore({
         cart: cartReducer,
         userLogin: userLoginReducer,
         userRegister: userRegisterReducer,
-        userDetails: userDetailsReducer,
+        // userDetails: userDetailsReducer,
         userUpdateProfile: userUpdateProfileReducer,
         orderCreate: orderCreateReducer,
+        orderList: orderListReducer,
     },
     initialState,
     middleware: [thunk],

@@ -11,6 +11,7 @@ const CartScreen = () => {
     const totalItems = cartItems.reduce((acc, item) => {
         return acc + item.qty;
     }, 0);
+
  
     const cartItemElements = cartItems.map(item => {
         return (

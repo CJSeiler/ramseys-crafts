@@ -11,6 +11,7 @@ const ShippingScreen = () => {
     const [formData, setFormData] = useState({
         address: shippingAddress.address,
         city: shippingAddress.city,
+        state: shippingAddress.state,
         postalCode: shippingAddress.postalCode,
     });
 
@@ -57,6 +58,18 @@ const ShippingScreen = () => {
                         id="city"
                         name="city" 
                         value={formData.city} 
+                        onChange={(e) => handleChange(e)}
+                        required 
+                    />
+                </div>
+
+                <div className="shipping-form__group">
+                    <label htmlFor="state">State:</label>
+                    <input 
+                        type="text"
+                        id="state"
+                        name="state" 
+                        value={formData.state} 
                         onChange={(e) => handleChange(e)}
                         required 
                     />

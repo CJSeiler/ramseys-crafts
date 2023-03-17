@@ -51,10 +51,11 @@ const RegisterScreen = () => {
         
     return (
         <div className="register-container">
-            {error && <Message variant={"alert-danger"}>{error}</Message>}
             {loading && <Loading />}
 
             <form className="register-form" onSubmit={(e) => handleSubmit(e)}>
+                {error && <Message variant={"alert-danger"}>{error}</Message>}
+
                 <div className="register-form__group">
                     <label htmlFor="name">Name:</label>
                     <input 

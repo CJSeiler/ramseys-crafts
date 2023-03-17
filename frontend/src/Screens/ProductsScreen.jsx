@@ -28,18 +28,18 @@ const Products = () => {
     
     // if theres a category query string in the url, then filter the products based on the category
     const productsElements = category ? 
-    filteredProducts.map(product => {
-        const {_id, image, name, description, price} = product;
-        return (
-            <ProductCard
-            key={_id}
-            id={_id} 
-            image={image}
-            name={name}
-            description={description}
-            price={price / 100}
-            />       
-            );
+        filteredProducts.map(product => {
+            const {_id, image, name, description, price} = product;
+            return (
+                <ProductCard
+                key={_id}
+                id={_id} 
+                image={image}
+                name={name}
+                description={description}
+                price={price / 100}
+                />       
+                );
         })
         :
         products.map(product => {
@@ -56,6 +56,8 @@ const Products = () => {
                 );
             });
             
+    // productsElements will always be 0 while page is loading
+    // this prevents displaying the error while loading
     if (!loading) {
         emptyElement = productsElements.length === 0 ? <Message variant="alert-danger">Oops... No products found.</Message> : null;
     }
@@ -65,66 +67,66 @@ const Products = () => {
             <div className="products-banner banner-image">
                 <h1>PRODUCTS</h1>
             </div>
+            {loading ? 
+                <Loading /> 
+                : 
+                error ? 
+                    <div className="products-screen__alert">
+                        <Message variant="alert-danger">{error}</Message> 
+                    </div>
+                    :
+                    <section>
+                        <div className="products-filter">
+                            <h3>Categories</h3>
+                            <ul className="products-categories" aria-label="products categories">
+                                <li>
+                                    <Link 
+                                        className="products-categories__link" 
+                                        to="/products" 
+                                        role="button"
+                                        aria-current={category  ? "false" : "page"}
+                                    >All</Link>
+                                </li>
 
-            <section>
-                <div className="products-filter">
-                    <h3>Categories</h3>
-                    <ul className="products-categories" aria-label="products categories">
-                        <li>
-                            <Link 
-                                className="products-categories__link" 
-                                to="/products" 
-                                role="button"
-                                aria-current={category  ? "false" : "page"}
-                            >All</Link>
-                        </li>
+                                <li>
+                                    <Link 
+                                        className="products-categories__link" 
+                                        to="/products?category=hat"
+                                        aria-current={category === "hat" ? "page" : "false"}
+                                        role="button"
+                                    >Hats</Link>
+                                </li>
 
-                        <li>
-                            <Link 
-                                className="products-categories__link" 
-                                to="/products?category=hat"
-                                aria-current={category === "hat" ? "page" : "false"}
-                                role="button"
-                            >Hats</Link>
-                        </li>
+                                <li>
+                                    <Link 
+                                        className="products-categories__link" 
+                                        to="/products?category=sweater"
+                                        aria-current={category === "sweater" ? "page" : "false"}
+                                        role="button"
+                                    >Sweaters</Link>
+                                </li>
 
-                        <li>
-                            <Link 
-                                className="products-categories__link" 
-                                to="/products?category=sweater"
-                                aria-current={category === "sweater" ? "page" : "false"}
-                                role="button"
-                            >Sweaters</Link>
-                        </li>
+                                <li>
+                                    <Link 
+                                        className="products-categories__link" 
+                                        to="/products?category=yarn" 
+                                        aria-current={category === "yarn" ? "page" : "false"}
+                                        role="button"
+                                    >Yarn</Link>
+                                </li>
+                            </ul>
+                        </div>
 
-                        <li>
-                            <Link 
-                                className="products-categories__link" 
-                                to="/products?category=yarn" 
-                                aria-current={category === "yarn" ? "page" : "false"}
-                                role="button"
-                            >Yarn</Link>
-                        </li>
-                    </ul>
-                </div>
-
-                <div className="products-list">
-                    {/* render Loading if loading is true
-                        render Message if loading is false but error is a truthy value
-                        render productsElements if loading is false and error is undefined
-                    */}
-                    {loading ? 
-                        <Loading /> 
-                        : 
-                        error ? 
-                            <Message variant="alert-danger">{error}</Message> 
-                            :
-                            productsElements
-                    }
-                    {emptyElement}
-                </div>
-
-            </section>
+                        <div className="products-list">
+                            {/* render Loading if loading is true
+                                render Message if loading is false but error is a truthy value
+                                render productsElements if loading is false and error is undefined
+                            */}
+                            {productsElements}
+                            {emptyElement}
+                        </div>
+                    </section>
+            }
         </div>
     );
 };

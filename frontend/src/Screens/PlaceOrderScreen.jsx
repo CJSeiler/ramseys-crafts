@@ -54,7 +54,6 @@ const PlaceOrderScreen = () => {
     const handlePlaceOrder = async () => {
         if(!isLoggedIn) {
             // navigate to guest confirmation screen
-            console.log("guest order placed");
             navigate("/orderconfirmation");
         } else {
             dispatch(createOrder({
@@ -100,84 +99,85 @@ const PlaceOrderScreen = () => {
             </div>
         );
     });
-
+    
     /* checking userInfo allows the useEffect function to run without an error */
     return (
-        (userInfo || guestInfo) && 
+        (userInfo || guestInfo) 
         
-            <div className="order-container">
-                <section className="customer-info-container">
-                    <div className="customer-info">
-                        <div className="customer-info__img">
-                            <img  src={userIcon} alt="user icon"/>
-                        </div>
-
-                        <div className="customer-info__details">
-                            <h2>Customer</h2>
-                            
-                            <p>{userInfo ? userInfo.name : guestInfo.name}</p>
-                            <p>{userInfo ? userInfo.email : guestInfo.email}</p>
-                        </div>
+        &&
+        
+        <div className="order-container">
+            <section className="customer-info-container">
+                <div className="customer-info">
+                    <div className="customer-info__img">
+                        <img  src={userIcon} alt="user icon"/>
                     </div>
 
-                    <div className="customer-info">
-                        <div className="customer-info__img">
-                            <img src={truckIcon} alt="truck icon"/>
-                        </div>
-
-                        <div className="customer-info__details">
-                            <h2>Order info</h2>
-                            <p>Shipping: {shippingAddress.city}</p>
-                            <p>Payment: {paymentMethod}</p>
-                        </div>
+                    <div className="customer-info__details">
+                        <h2>Customer</h2>
+                        
+                        <p>{userInfo ? userInfo.name : guestInfo.name}</p>
+                        <p>{userInfo ? userInfo.email : guestInfo.email}</p>
                     </div>
-
-                    <div className="customer-info">
-                        <div className="customer-info__img">
-                            <img src={locationIcon} alt="location icon"/>
-                        </div>
-
-                        <div className="customer-info__details">
-                            <h2>Deliver to</h2>
-                            <p>Address: {shippingAddress.address}</p>
-                        </div>
-                    </div>
-                </section>
-
-                <section className="items-container">
-                    {orderItemsElements}
-                </section>
-
-                <div className="price-info">
-                    {error && (
-                        <div className="price-info__alert">
-                            <Message variant="alert-danger">{error}</Message>
-                        </div>
-                    )}
-
-                    <p className="price-info__label">Products</p>
-                    <p className="price-info__amount">${cart.subtotalPrice}</p>
-
-                    <p className="price-info__label">Shipping</p>
-                    <p className="price-info__amount">${cart.shippingPrice}</p>
-
-                    <p className="price-info__label">Tax</p>
-                    <p className="price-info__amount">${cart.taxPrice}</p>
-
-                    <p className="price-info__label">Total</p>
-                    <p className="price-info__amount">${cart.totalPrice}</p>
-
-                    
-                    <button 
-                        className="order-button"
-                        onClick={handlePlaceOrder}
-                        disabled={isCartEmpty}
-                    >
-                        PLACE ORDER
-                    </button>
                 </div>
+
+                <div className="customer-info">
+                    <div className="customer-info__img">
+                        <img src={truckIcon} alt="truck icon"/>
+                    </div>
+
+                    <div className="customer-info__details">
+                        <h2>Order info</h2>
+                        <p>Shipping: {shippingAddress.city}, {shippingAddress.state}</p>
+                        <p>Payment: {paymentMethod}</p>
+                    </div>
+                </div>
+
+                <div className="customer-info">
+                    <div className="customer-info__img">
+                        <img src={locationIcon} alt="location icon"/>
+                    </div>
+
+                    <div className="customer-info__details">
+                        <h2>Deliver to</h2>
+                        <p>Address: {shippingAddress.address}</p>
+                    </div>
+                </div>
+            </section>
+
+            <section className="items-container">
+                {orderItemsElements}
+            </section>
+
+            <div className="price-info">
+                {error && (
+                    <div className="price-info__alert">
+                        <Message variant="alert-danger">{error}</Message>
+                    </div>
+                )}
+
+                <p className="price-info__label">Products</p>
+                <p className="price-info__amount">${cart.subtotalPrice}</p>
+
+                <p className="price-info__label">Shipping</p>
+                <p className="price-info__amount">${cart.shippingPrice}</p>
+
+                <p className="price-info__label">Tax</p>
+                <p className="price-info__amount">${cart.taxPrice}</p>
+
+                <p className="price-info__label">Total</p>
+                <p className="price-info__amount">${cart.totalPrice}</p>
+
+                
+                <button 
+                    className="order-button"
+                    onClick={handlePlaceOrder}
+                    disabled={isCartEmpty}
+                    >
+                    PLACE ORDER
+                </button>
             </div>
-        
+        </div>       
     );
 };
 

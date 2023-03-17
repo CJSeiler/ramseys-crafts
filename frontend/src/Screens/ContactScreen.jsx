@@ -2,6 +2,7 @@ import { useState, useRef } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
 import axios from "axios";
 import emailjs from "@emailjs/browser";
+import Message from "../Components/LoadingError/Error";
 
 const ContactScreen = () => {
     const captchaRef = useRef(null);
@@ -53,7 +54,7 @@ const ContactScreen = () => {
                 sendEmail();
             }
         } catch (error) {
-            setErrorMessage(e.response.data.message);
+            setErrorMessage(error.response.data.message);
         }   
     }
 
@@ -79,8 +80,8 @@ const ContactScreen = () => {
                 </div>
 
                 <form className="contact-form" onSubmit={handleSubmit} ref={form}>
+                    {errorMessage && <Message variant="alert-danger">{errorMessage}</Message>}
                     <p className="contact-form__heading">Send us a message!</p>
-                    {errorMessage && <p className="alert">{errorMessage}</p>}
 
                     <div className="contact-form__group">
                         <label htmlFor="from_name">Name: </label>

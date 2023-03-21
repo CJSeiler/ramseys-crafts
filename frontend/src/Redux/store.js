@@ -13,7 +13,8 @@ import {
 } from "./Reducers/UserReducer"
 import { 
     orderCreateReducer,
-    orderListReducer
+    orderListReducer,
+    orderDetailsReducer,
  } from "./Reducers/OrderReducers"
 
 const initialState = {
@@ -44,6 +45,7 @@ const store = configureStore({
         userUpdateProfile: userUpdateProfileReducer,
         orderCreate: orderCreateReducer,
         orderList: orderListReducer,
+        order: orderDetailsReducer,
     },
     initialState,
     middleware: [thunk],

@@ -14,7 +14,7 @@ const OrdersList = (props) => {
         return (
             <div className="order" key={order._id}>
                 <div>
-                    <Link className="order__link" to={`/order/${order._id}`}>{i + 1}</Link>
+                    <Link className="order__link" to={`/order/${order._id}`}>{order._id}</Link>
                 </div>
                 <p>{formattedDate}</p>
                 <p>${order.totalPrice}</p>

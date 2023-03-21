@@ -13,8 +13,7 @@ import ProfileScreen from "./Screens/ProfileScreen";
 import ShippingScreen from "./Screens/ShippingScreen";
 import PaymentScreen from "./Screens/PaymentScreen";
 import PlaceOrderScreen from "./Screens/PlaceOrderScreen";
-import GuestCheckoutScreen from "./Screens/GuestCheckoutScreen";
-import OrderScreen from "./Screens/OrderScreen";
+import OrderDetailsScreen from "./Screens/OrderDetailsScreen";
 
 
 const router = createBrowserRouter([
@@ -72,12 +71,8 @@ const router = createBrowserRouter([
           element: <PlaceOrderScreen />
         },
         {
-          path: "/guestcheckout",
-          element: <GuestCheckoutScreen />
-        },
-        {
           path: "/order/:id",
-          element: <OrderScreen />
+          element: <OrderDetailsScreen />
         }
       ]
     }

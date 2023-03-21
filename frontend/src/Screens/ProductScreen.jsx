@@ -35,7 +35,7 @@ const ProductDetails = () => {
         loading ? 
             <Loading /> 
             : 
-            true ?
+            error ?
                 <div className="product-screen__alert">
                     <Message variant="alert-danger">{error}this is your message</Message> 
                 </div> 

@@ -52,10 +52,6 @@ const PlaceOrderScreen = () => {
       }, [dispatch, navigate, success, order]);
 
     const handlePlaceOrder = async () => {
-        if(!isLoggedIn) {
-            // navigate to guest confirmation screen
-            navigate("/orderconfirmation");
-        } else {
             dispatch(createOrder({
                 orderItems: cartItems,
                 shippingAddress: shippingAddress,
@@ -65,7 +61,6 @@ const PlaceOrderScreen = () => {
                 taxPrice: Number(taxPrice),
                 totalPrice: Number(totalPrice),
             }));
-        }
     };
     
     // Calculate Price

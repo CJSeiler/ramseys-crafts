@@ -1,22 +1,37 @@
-# Ramsey's Craft Store
+# Ramsey's Craft Store (Mock E-commerce)
 
-Simple overview of use/purpose.
+CrochetEcommerce is a fully functional mock e-commerce website developed as a learning project, designed to showcase the implementation of various technologies and features commonly found in real-world e-commerce platforms. The website primarily focuses on the sale of crochet items, providing users with an immersive shopping experience.
 
 ## Description
 
-An in-depth paragraph about your project and overview of use.
+CrochetEcommerce incorporates several key features to simulate the functionality of a real e-commerce website:
 
-## Getting Started
+### Key Features
+
+* **Authentication and Registration:** Users can create accounts and log in securely using JSON Web Tokens (JWT). This ensures that sensitive user information is protected, allowing for a personalized experience with features like saved carts and order history.
+
+* **Contact Page:** A dedicated contact page is provided, enabling users to easily reach out to the website administrators or customer support for inquiries, feedback, or assistance. The input fields for the contact form are restricted using regular expressions (regex) to ensure valid and properly formatted data is submitted.
+
+* **Checkout and Payment:** Users can select items, add them to their cart, and proceed to the checkout process. Integrated payment functionality ensures secure transactions, allowing users to complete purchases using various payment methods. The credit card details input fields are also restricted using regex for enhanced data validation.
+
+* **Profile and Edit Profile:** Each user has a profile page where they can view and manage their personal information, saved addresses, and account settings. Users can update their profiles, view order history, and track ongoing orders.
+
+* **Address Verification with Google API:** To enhance the accuracy and reliability of shipping information, the website employs Google's Address Verification API. This helps users ensure that their entered addresses are valid and complete, reducing potential delivery issues. The address input fields are also validated using regex to maintain data integrity.
+
+* **Security:** CrochetEcommerce prioritizes the security of user information and transactions. Measures such as password encryption, secure communication protocols, and input validation using regex are implemented to safeguard user data and maintain the integrity of the website.
+
 
 ### Built With
-
-This section should list any major frameworks/libraries used to bootstrap your project. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
 
 * [![React][React.js]][React-url]
 * [![Node][Node.js]][Node-url]
 * [![Express][Express]][Express-url]
 * [![Redux][Redux]][Redux-url]
 * [![MongoDB][MongoDB]][MongoDB-url]
+
+## Getting Started
+
+
 ### Installing
 
 * How/where to download your program
@@ -28,13 +43,6 @@ This section should list any major frameworks/libraries used to bootstrap your p
 * Step-by-step bullets
 ```
 code blocks for commands
-```
-
-## Help
-
-Any advise for common problems or issues.
-```
-command to run if program contains helper info
 ```
 
 ## Authors
@@ -49,13 +57,6 @@ Contributors names and contact info
 This project is licensed under the [NAME HERE] License - see the LICENSE.md file for details
 
 ## Acknowledgments
-
-Inspiration, code snippets, etc.
-* [awesome-readme](https://github.com/matiassingers/awesome-readme)
-* [PurpleBooth](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2)
-* [dbader](https://github.com/dbader/readme-template)
-* [zenorocha](https://gist.github.com/zenorocha/4526327)
-* [fvcproductions](https://gist.github.com/fvcproductions/1bfc2d4aecb01a834b46)
 * [fkhadra](https://github.com/fkhadra/react-toastify)(React-Toastify)
 
 [React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB

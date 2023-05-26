@@ -136,7 +136,11 @@ This project is licensed under the MIT License - see the LICENSE.md file for det
 <br></br>
 
 ## Acknowledgments
-* [fkhadra](https://github.com/fkhadra/react-toastify)(React-Toastify)
+* [fkhadra](https://github.com/fkhadra/react-toastify) (React-Toastify)
+* [Nadia Clabassi](https://unsplash.com/@foifezza) (Photograph)
+* [Bea Marciniak](https://unsplash.com/@freespirit_fotografica) (Photograph)
+* [Kate McLean](https://unsplash.com/@justkate__) (Photograph)
+* [Glenn Carstens-Peters](https://unsplash.com/@glenncarstenspeters) (Photograph)
 
 [React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
 [React-url]: https://reactjs.org/

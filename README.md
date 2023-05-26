@@ -4,13 +4,26 @@
 
 # Ramsey's Craft Store (Mock E-commerce)
 
-
 Ramsey's Craft Store is a fully functional mock e-commerce website developed as a learning project, designed to showcase the implementation of various technologies and features commonly found in real-world e-commerce platforms. The website primarily focuses on the sale of crochet items, providing users with an immersive shopping experience.<br></br>
 
 ## Description
 
 Ransey's Craft Store incorporates several key features to simulate the functionality of a real e-commerce website:
+
 <br></br>
+
+<img src="https://github.com/CJSeiler/ramseys-crafts/assets/82341510/9ada781f-22cc-4774-8e70-5709a92630ce" alt="store screenshot" align="center" />
+<br></br>
+
+<img src="https://github.com/CJSeiler/ramseys-crafts/assets/82341510/4ff917c8-27ae-4a1f-a893-1fb1291b647f" alt="store screenshot" />
+<br></br>
+
+<img src="https://github.com/CJSeiler/ramseys-crafts/assets/82341510/20501f7c-2a59-4839-bb6a-d058b2c41712" alt="store screenshot" />
+<br></br>
+
+<img src="https://github.com/CJSeiler/ramseys-crafts/assets/82341510/1f1585b6-3f32-4de4-a669-ee3114c863b8" alt="store screenshot" />
+<br></br>
+
 
 ### Key Features
 

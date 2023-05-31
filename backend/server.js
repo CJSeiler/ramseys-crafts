@@ -2,7 +2,7 @@ import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 import connectDatabase from "./config/MongoDb.js";
-import ImportData from "./Dataimport.js";
+// import ImportData from "./Dataimport.js";
 import productRouter from "./Routes/ProductRoutes.js";
 import userRouter from "./Routes/UserRoutes.js";
 import orderRouter from "./Routes/orderRoutes.js";
@@ -17,7 +17,7 @@ app.use(express.json());
 app.use(cors());
 
 // API
-app.use("/api/import", ImportData);
+// app.use("/api/import", ImportData);
 app.use("/api/products", productRouter);
 app.use("/api/users", userRouter);
 app.use("/api/orders", orderRouter);

@@ -1,5 +1,5 @@
-import mongoose from "mongoose"
-import bcrypt from "bcryptjs"
+import mongoose from "mongoose";
+import bcrypt from "bcryptjs";
 
 const userSchema = mongoose.Schema(
     {
@@ -26,12 +26,12 @@ const userSchema = mongoose.Schema(
     {
         timestamps: true
     }
-)
+);
 
 //LOGIN
 userSchema.methods.matchPassword = async function (enterPassword) {
     return await bcrypt.compare(enterPassword, this.password)
-}
+};
 
 //REGISTER
 userSchema.pre("save", async function(next) {
@@ -40,8 +40,8 @@ userSchema.pre("save", async function(next) {
     }
     const salt = await bcrypt.genSalt(10)
     this.password = await bcrypt.hash(this.password, salt)
-})
+});
 
-const User = mongoose.model("User", userSchema)
+const User = mongoose.model("User", userSchema);
 
-export default User
+export default User;

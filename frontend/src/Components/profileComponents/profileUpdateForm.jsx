@@ -19,7 +19,7 @@ const ProfileUpdateForm = () => {
     const { error, userInfo } = useSelector(state => state.userLogin);
 
     const userUpdateProfile = useSelector(state => state.userUpdateProfile);
-    const { loading: updateLoading} = userUpdateProfile;
+    const { loading } = userUpdateProfile;
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -62,13 +62,13 @@ const ProfileUpdateForm = () => {
     };
     
     return (
-        <>
+        <div className="profile-form-container">
             <Toast />
-            {updateLoading && <Loading />}
-            <form className="profile-update-form" onSubmit={handleSubmit}>
+            {loading && <Loading />}
+            <form className="profile-form" onSubmit={handleSubmit}>
                 {error && <Message variant="alert-danger">{error}</Message>}
                 
-                <div className="profile-update-form__group">
+                <div className="profile-form__group">
                     <label htmlFor="name">Name:</label>
                     <input
                         id="name" 
@@ -81,7 +81,7 @@ const ProfileUpdateForm = () => {
                         />
                 </div>
 
-                <div className="profile-update-form__group">
+                <div className="profile-form__group">
                     <label htmlFor="email">Email:</label>
                     <input
                         id="email" 
@@ -93,7 +93,7 @@ const ProfileUpdateForm = () => {
                         />
                 </div>
 
-                <div className="profile-update-form__group">
+                <div className="profile-form__group">
                     <label htmlFor="password">Password:</label>
                     <input
                         id="password" 
@@ -105,7 +105,7 @@ const ProfileUpdateForm = () => {
                         />
                 </div>
 
-                <div className="profile-update-form__group">
+                <div className="profile-form__group">
                     <label htmlFor="confirmPassword">Confirm Password:</label>
                     <input 
                         id="confirmPassword"
@@ -117,9 +117,9 @@ const ProfileUpdateForm = () => {
                         />
                 </div>
 
-                <button className="profile-update-form__button" type="submit">UPDATE PROFILE</button>
+                <button className="profile-form__button" type="submit">UPDATE PROFILE</button>
             </form>
-        </>
+        </div>
     );
 };
 

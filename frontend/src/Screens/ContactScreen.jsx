@@ -15,6 +15,7 @@ const ContactScreen = () => {
     });
 
     const [errorMessage, setErrorMessage] = useState("");
+    const [success, setSuccess] = useState(false);
 
     const handleChange = (e) => {
         const target = e.target;
@@ -36,11 +37,17 @@ const ContactScreen = () => {
             process.env.REACT_APP_EMAIL_PUBLIC_KEY
             )
             .then((response) => {
-                return;
+                setContactForm({
+                    from_name: "",
+                    email_id: "",
+                    message: ""
+                });
+                setSuccess(true);
             }, (error) => {
                 setErrorMessage(error.response.data.message);
             });
-        };
+        
+    };
         
     const handleSubmit = async (e) =>{
         e.preventDefault();
@@ -81,7 +88,11 @@ const ContactScreen = () => {
 
                 <form className="contact-form" onSubmit={handleSubmit} ref={form}>
                     {errorMessage && <Message variant="alert-danger">{errorMessage}</Message>}
-                    <p className="contact-form__heading">Send us a message!</p>
+                    {success ?
+                        <p className="contact-form__heading">Thank you for your message!</p>
+                        :
+                        <p className="contact-form__heading">Send us a message!</p>
+                    }
 
                     <div className="contact-form__group">
                         <label htmlFor="from_name">Name: </label>
@@ -117,6 +128,7 @@ const ContactScreen = () => {
                             value={contactForm.message} 
                             onChange={(e)=> handleChange(e)}
                             placeholder="What would you like to say?"
+                            maxLength={750}
                             required
                         >
                         </textarea>
@@ -126,11 +138,11 @@ const ContactScreen = () => {
                         className="contact-form__recaptcha"
                         sitekey={process.env.REACT_APP_SITE_KEY} 
                         ref={captchaRef}
+                        size={"compact"}
                     />
 
-                    <button type="submit">SEND</button>
+                    <button type="submit">SEND MESSAGE</button>
                 </form>
-
             </section>
         </div>
     );

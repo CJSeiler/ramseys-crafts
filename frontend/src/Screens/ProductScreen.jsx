@@ -41,11 +41,11 @@ const ProductDetails = () => {
                 </div> 
                 :
                 <div className="product-container">
-                    <img className="product-image" src={image} alt={name}/>
+                    <img className="product__image" src={image} alt={name}/>
                     <div className="product-container__right">
-                        <h3 className="product-name">{name}</h3>
-                        <p className="product-price">${price / 100}</p>
-                        <p className="product-description">{description}</p>
+                        <h3 className="product__name">{name}</h3>
+                        <p className="product__price">${price / 100}</p>
+                        <p className="product__description">{description}</p>
 
                         <div className="product-quantity-container">
                             <label htmlFor="quantity" className="sr-only">Quantity: </label>

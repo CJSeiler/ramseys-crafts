@@ -7,8 +7,8 @@ import { login } from "../Redux/Actions/UserActions";
 
 const LoginScreen = () => {
     const [formData, setFormData] = useState({
-        email: "",
-        password: "",
+        email: "example@example.com",
+        password: "example",
     });
 
     const dispatch = useDispatch();
@@ -18,7 +18,7 @@ const LoginScreen = () => {
 
     useEffect(() => {
         if (userInfo) {
-            navigate("/profile")
+            navigate("/profile");
         }
     }, [navigate, userInfo]);
 
@@ -70,7 +70,7 @@ const LoginScreen = () => {
                 <button type="submit">LOGIN</button>
 
                 <Link to="/register" aria-label="link to create acccount">
-                    <p className="login-link">Create Account</p>
+                    <p className="register-link">Create Account</p>
                 </Link>
             </form>
         </div>

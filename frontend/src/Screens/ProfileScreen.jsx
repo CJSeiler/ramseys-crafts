@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-// import { getUserDetails } from "../Redux/Actions/UserActions";
 import ProfileUpdateForm from "../Components/profileComponents/ProfileUpdateForm";
 import OrdersList from "../Components/profileComponents/OrdersList";
+import { logout } from "../Redux/Actions/UserActions";
 import { listOrders } from "../Redux/Actions/OrderActions";
+import { formatDate } from "../utils/utils";
 import profileIcon from "../icons/profile-icon.svg"
 
 const ProfileScreen = () => {
@@ -16,11 +17,6 @@ const ProfileScreen = () => {
     const { userInfo } = userLogin;
 
     const isLoggedIn = userInfo ? true : false;
-
-    const date = new Date(isLoggedIn ? userInfo.createdAt : null);
-    const options = { month: 'long', day: 'numeric', year: 'numeric' };
-    const formattedDate = date.toLocaleDateString('en-US', options);
-
     const { loading, error, orders} = useSelector(state => state.orderList);
 
     useEffect(() => {
@@ -29,7 +25,6 @@ const ProfileScreen = () => {
         }
 
         dispatch(listOrders());
-        // dispatch(getUserDetails());
     }, [dispatch, navigate, isLoggedIn]);
 
     return (
@@ -41,14 +36,24 @@ const ProfileScreen = () => {
                 <div className="profile__details">
                     <div>
                         <p className="profile__name bold">{isLoggedIn ? userInfo.name : null}</p>
-                        <p className="profile__date" >Joined {isLoggedIn ? formattedDate : null}</p>
+                        <p className="profile__date" >Joined {isLoggedIn ? formatDate(userInfo.createdAt) : null}</p>
+                        <button
+                            className="logout-button"
+                            aria-label="logout button"
+                            onClick={() => {
+                                dispatch(logout());
+                                navigate("/login");
+                            }}
+                        >
+                            Logout
+                        </button>
                     </div>
                 </div>
 
                 <div className="profile__tabs">
                     <div className={`profile__settings-tab ${tab === "settings" ? "selected-tab" : ""}`}>
                         <button 
-                            aria-label="shows profile settings"
+                            aria-label="show profile settings"
                             onClick={() => setTab("settings")}
                         >
                             PROFILE SETTINGS
@@ -66,6 +71,7 @@ const ProfileScreen = () => {
                     </div>
                 </div>
             </div>
+
             {tab === "settings" 
                 ? 
                 <ProfileUpdateForm /> 

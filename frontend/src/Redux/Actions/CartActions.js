@@ -3,14 +3,12 @@ import {
     CART_REMOVE_ITEM,
     CART_UPDATE_QTY,
     CART_SAVE_SHIPPING_ADDRESS,
-    CART_SAVE_PAYMENT_METHOD,
-    CART_SAVE_GUEST_INFO,
-} from "../Constants/CartConstants"
-import axios from "axios"
+} from "../Constants/CartConstants";
+import axios from "axios";
 
 // ADD PRODUCT TO CART
 export const addToCart = (id, qty) => async(dispatch, getState) => {
-    const { data } = await axios.get(`/api/products/${id}`)
+    const { data } = await axios.get(`/api/products/${id}`);
 
     dispatch({
         type: CART_ADD_ITEM,
@@ -23,26 +21,26 @@ export const addToCart = (id, qty) => async(dispatch, getState) => {
             countInStock: data.countInStock,
             qty,
         }
-    })
+    });
 
-    localStorage.setItem("cartItems", JSON.stringify(getState().cart.cartItems))
-}
+    localStorage.setItem("cartItems", JSON.stringify(getState().cart.cartItems));
+};
 
 // REMOVE PRODUCT FROM CART
 export const removeFromCart = id => (dispatch, getState) => {
     dispatch({
         type: CART_REMOVE_ITEM,
         payload: id
-    })
+    });
 
-    localStorage.setItem("cartItems", JSON.stringify(getState().cart.cartItems))
-}
+    localStorage.setItem("cartItems", JSON.stringify(getState().cart.cartItems));
+};
 
 // UPDATE CART QUANTITY
 export const updateCartQuantity = (id, qty) => async(dispatch, getState) => {
-    const cartItems = getState().cart.cartItems
-    const currentProduct = cartItems.find(item => item.product === id)
-    const { product, name, description, image, price, countInStock } = currentProduct 
+    const cartItems = getState().cart.cartItems;
+    const currentProduct = cartItems.find(item => item.product === id);
+    const { product, name, description, image, price, countInStock } = currentProduct;
 
     if (currentProduct) {
         dispatch({
@@ -56,38 +54,18 @@ export const updateCartQuantity = (id, qty) => async(dispatch, getState) => {
                 countInStock: countInStock,
                 qty: qty,
             }
-        })
+        });
     }
 
-    localStorage.setItem("cartItems", JSON.stringify(getState().cart.cartItems))
-}
+    localStorage.setItem("cartItems", JSON.stringify(getState().cart.cartItems));
+};
 
 // SAVE SHIPPING ADDRESS
 export const saveShippingAddress = data => dispatch => {
     dispatch({
         type: CART_SAVE_SHIPPING_ADDRESS,
         payload: data
-    })
+    });
 
-    localStorage.setItem("shippingAddress", JSON.stringify(data))
-}
-
-// SAVE PAYMENT METHDO
-export const savePaymentMethod = data => dispatch => {
-    dispatch({
-        type: CART_SAVE_PAYMENT_METHOD,
-        payload: data
-    })
-
-    localStorage.setItem("paymentMethod", JSON.stringify(data))
-}
-
-// SAVE GUEST INFO
-export const saveGuestInfo = data => dispatch => {
-    dispatch({
-        type: CART_SAVE_GUEST_INFO,
-        payload: data
-    })
-
-    localStorage.setItem("guestInfo", JSON.stringify(data))
-}
+    localStorage.setItem("shippingAddress", JSON.stringify(data));
+};

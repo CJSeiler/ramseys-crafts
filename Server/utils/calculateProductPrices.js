@@ -1,34 +1,27 @@
-const calculateItemPrice = (qty, price) => {
-    return (qty * price) / 100
-}
+const calculateItemSubtotal = (qty, price) => {
+    return (qty * price) / 100;
+};
 
-const calculateCartSubtotal = (cartItems) => {
-    return cartItems.reduce((acc, item) => {
-        return acc + item.price * item.qty / 100
-    }, 0).toFixed(2)
-}
+const calculateShipping = (subtotal) => {
+    const shipping = subtotal > 100 ? 0 : 20;
+    return shipping.toFixed(2);
+};
 
-const calculateShippingPrice = (cartItemsSubtotal) => {
-    const shippingPrice = cartItemsSubtotal > 100 ? 0 : 20
-    return shippingPrice.toFixed(2)
-}
+const calculateTax = (subtotal) => {
+    return (0.08 * subtotal).toFixed(2);
+};
 
-const calculateTaxPrice = (cartSubtotalPrice) => {
-    return (0.08 * cartSubtotalPrice).toFixed(2)
-}
-
-const calculateTotalOrderPrice = (cartSubTotalPrice, cartShippingPrice, cartTaxPrice) => {
+const calculateTotal = (subtotal, shipping, tax) => {
     const totalPrice = (
-        Number(cartSubTotalPrice) + 
-        Number(cartShippingPrice) + 
-        Number(cartTaxPrice)
-        )
-    return totalPrice.toFixed(2)
-}
+        Number(subtotal) + 
+        Number(shipping) + 
+        Number(tax)
+        );
+    return totalPrice.toFixed(2);
+};
 
-export { calculateItemPrice,
-         calculateCartSubtotal,
-         calculateShippingPrice,
-         calculateTaxPrice,
-         calculateTotalOrderPrice 
-        }
+export { calculateItemSubtotal,
+         calculateShipping,
+         calculateTax,
+         calculateTotal 
+        };

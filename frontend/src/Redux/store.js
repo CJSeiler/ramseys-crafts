@@ -21,7 +21,6 @@ const initialState = {
     cart: {
         cartItems: [],
         shippingAddress: {},
-        guestInfo: {},
     },
     userLogin: {
         userInfo: {}

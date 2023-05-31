@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { saveShippingAddress } from "../Redux/Actions/CartActions";
+import Dropdown from "../Components/StateDropdown";
 
 const ShippingScreen = () => {
 
@@ -9,30 +10,46 @@ const ShippingScreen = () => {
     const { shippingAddress } = cart;
 
     const [formData, setFormData] = useState({
-        address: shippingAddress.address,
-        city: shippingAddress.city,
-        state: shippingAddress.state,
-        postalCode: shippingAddress.postalCode,
+        address: shippingAddress.address || "410 Terry Ave N",
+        apartment: shippingAddress.apartment || "",
+        city: shippingAddress.city || "Seattle",
+        state: shippingAddress.state || "Washington",
+        postalCode: shippingAddress.postalCode || "98109",
     });
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
     const handleChange = e => {
+        e.preventDefault();
         const {name, value} = e.target;
+        let regex;
 
-        setFormData(prevFormData => {
-            return {
-                ...prevFormData,
-                [name]: value
-            };
-        });
+        if (name === "address" || name === "apartment") {
+            // restrict to numbers and letters
+            regex = /^[a-zA-Z0-9\s]*$/;
+        } else if (name === "city" || name === "state") {
+            // restrict to letters
+            regex = /^[a-zA-Z\s]*$/;
+        } else {
+            //restrict to numbers
+            regex = /^[0-9]*$/;
+        }
+        
+        if(regex.test(value)) {
+            setFormData(prevFormData => {
+                return {
+                    ...prevFormData,
+                    [name]: value
+                };
+            });
+        }
     };
 
     const handleSubmit = (e) => {
         e.preventDefault();
         dispatch(saveShippingAddress(formData));
-        navigate("/payment");
+        navigate("/placeorder");
     }
 
     return (
@@ -47,7 +64,20 @@ const ShippingScreen = () => {
                         name="address" 
                         value={formData.address} 
                         onChange={(e) => handleChange(e)}
+                        maxLength={60}
                         required 
+                    />
+                </div>
+
+                <div className="shipping-form__group">
+                    <label htmlFor="apartment">Apartment No.</label>
+                    <input 
+                        type="text" 
+                        id="apartment"
+                        name="apartment" 
+                        value={formData.apartment} 
+                        onChange={(e) => handleChange(e)}
+                        maxLength={10}
                     />
                 </div>
 
@@ -59,21 +89,12 @@ const ShippingScreen = () => {
                         name="city" 
                         value={formData.city} 
                         onChange={(e) => handleChange(e)}
+                        maxLength={20}
                         required 
                     />
                 </div>
 
-                <div className="shipping-form__group">
-                    <label htmlFor="state">State:</label>
-                    <input 
-                        type="text"
-                        id="state"
-                        name="state" 
-                        value={formData.state} 
-                        onChange={(e) => handleChange(e)}
-                        required 
-                    />
-                </div>
+                <Dropdown handler={handleChange} state={formData.state}/>
 
                 <div className="shipping-form__group">
                     <label htmlFor="postal">Postal Code:</label>
@@ -83,7 +104,7 @@ const ShippingScreen = () => {
                         name="postalCode" 
                         value={formData.postalCode} 
                         onChange={(e) => handleChange(e)}
-                        maxLength="5"
+                        maxLength={5}
                         required 
                     />
                 </div>

@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { calculateCartSubtotal } from "../utils";
+import { calculateSubtotal } from "../utils/priceUtils";
 import CartItem from "../Components/cartComponents/CartItem";
 
 const CartScreen = () => {
@@ -30,7 +30,7 @@ const CartScreen = () => {
     return isCartEmpty ?  
         (
             <div className="cart-container">
-                <div className="cart-header-empty">
+                <div className="cart-header__empty">
                     <h2>Your cart is empty.</h2>
                     <Link to="/products" className="empty-cart-link" aria-label="link to products">Start Shopping!</Link>
                 </div>
@@ -41,7 +41,7 @@ const CartScreen = () => {
 
                 {cartItemElements}
 
-                <p className="cart-total-price">Subtotal: ${calculateCartSubtotal(cartItems)}</p>
+                <p className="cart-total-price">Subtotal: ${calculateSubtotal(cartItems)}</p>
 
                 <Link to="/shipping" className="cart-checkout-link" aria-label="link to checkout">CHECKOUT</Link>
             </div>

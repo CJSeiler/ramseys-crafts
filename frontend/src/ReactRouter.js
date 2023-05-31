@@ -1,5 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import App from "./App";
+import PrivateRouter from "./PrivateRouter";
 import ErrorScreen from "./Screens/ErrorScreen";
 import HomeScreen from "./Screens/HomeScreen";
 import AboutScreen from "./Screens/AboutScreen";
@@ -11,7 +12,6 @@ import LoginScreen  from "./Screens/LoginScreen";
 import RegisterScreen from "./Screens/RegisterScreen";
 import ProfileScreen from "./Screens/ProfileScreen";
 import ShippingScreen from "./Screens/ShippingScreen";
-import PaymentScreen from "./Screens/PaymentScreen";
 import PlaceOrderScreen from "./Screens/PlaceOrderScreen";
 import OrderDetailsScreen from "./Screens/OrderDetailsScreen";
 
@@ -56,27 +56,23 @@ const router = createBrowserRouter([
         },
         {
           path: "/profile",
-          element: <ProfileScreen />
+          element: <PrivateRouter component={ProfileScreen}/>
         },
         {
           path: "/shipping",
-          element: <ShippingScreen />
-        },
-        {
-          path: "/payment",
-          element: <PaymentScreen />
+          element: <PrivateRouter component={ShippingScreen}/>
         },
         {
           path: "/placeorder",
-          element: <PlaceOrderScreen />
+          element: <PrivateRouter component={PlaceOrderScreen}/>
         },
         {
           path: "/order/:id",
-          element: <OrderDetailsScreen />
+          element: <PrivateRouter component={OrderDetailsScreen}/>
         }
       ]
     }
-  ]);
+]);
 
 
-  export default router
+export default router;

@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { removeFromCart, updateCartQuantity } from "../../Redux/Actions/CartActions.js";
-import { calculateItemPrice } from "../../utils.js";
+import { calculateItemSubtotal } from "../../utils/priceUtils";
 import closeMenu from "../../icons/close-menu.png";
 
 const CartItem = (props) => {
@@ -39,7 +39,7 @@ const CartItem = (props) => {
                 <p className="sr-only">use the arrow keys to navigate the quantity options and press enter to select</p>
             </div>
 
-            <p className="cart-item__price">${calculateItemPrice(currentItem.qty, props.price)}</p>
+            <p className="cart-item__price">${calculateItemSubtotal(currentItem.qty, props.price)}</p>
 
             <button 
                 className="cart-item__remove-button"

@@ -1,7 +1,7 @@
 import express from "express";
 import asyncHandler from "express-async-handler";
 import protect from "../Middleware/AuthMiddleware.js";
-import verifyOrder from "../utils/verifyOrder.js";
+import { verifyOrder, verifyShippingAddress} from "../utils/verifyOrder.js";
 import Order from "./../Models/OrderModel.js";
 
 
@@ -13,17 +13,28 @@ orderRouter.post("/", protect, asyncHandler(async (req, res) => {
         orderItems, 
         shippingAddress, 
         paymentMethod, 
-        subtotalPrice, 
-        taxPrice, 
-        shippingPrice, 
-        totalPrice,
+        subtotal, 
+        tax, 
+        shipping, 
+        total,
     } = req.body;
 
+    const addressValidation = await verifyShippingAddress(shippingAddress);
+    console.log(addressValidation);
    
-   if (!await verifyOrder(orderItems, totalPrice)) {
+   if (!await verifyOrder(orderItems, total)) {
         res.status(400);
         throw new Error("Order prices do not match");
-   }
+    }
+
+    if(addressValidation.error) {
+        res.status(addressValidation.error.code);
+        res.json(addressValidation.error);
+    }
+
+    if(addressValidation.result.verdict.hasUnconfirmedComponents) {
+        throw new Error("invalid address");
+    }
     
     if (orderItems && orderItems.length === 0) {
         res.status(400);
@@ -34,10 +45,10 @@ orderRouter.post("/", protect, asyncHandler(async (req, res) => {
             user: req.user._id, 
             shippingAddress, 
             paymentMethod, 
-            subtotalPrice, 
-            taxPrice, 
-            shippingPrice, 
-            totalPrice, 
+            subtotal, 
+            tax,
+            shipping, 
+            total, 
         });
 
         const createOrder = await order.save();

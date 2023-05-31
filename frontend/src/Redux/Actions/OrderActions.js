@@ -8,8 +8,11 @@ import {
     ORDER_DETAILS_REQUEST,
     ORDER_DETAILS_SUCCESS,
     ORDER_DETAILS_FAIL, 
-} from "./../Constants/OrderConstants"
-import { CART_CLEAR_ITEMS } from "../Constants/CartConstants"
+    } from "./../Constants/OrderConstants"
+import { 
+        CART_CLEAR_ITEMS, 
+        CART_CLEAR_SHIPPING_ADDRESS 
+    } from "../Constants/CartConstants"
 import axios from "axios"
 import { logout } from "./UserActions"
 
@@ -32,8 +35,10 @@ export const createOrder = order => async(dispatch, getState) => {
         const { data } = await axios.post(`/api/orders`, order, config);
         dispatch({ type: ORDER_CREATE_SUCCESS, payload: data });
         dispatch({ type: CART_CLEAR_ITEMS, payload: data });
+        dispatch({type: CART_CLEAR_SHIPPING_ADDRESS, payload: data});
 
         localStorage.removeItem("cartItems");
+        localStorage.removeItem("shippingAddress");
     } catch (error) {
         const message =
             error.response && error.response.data.message

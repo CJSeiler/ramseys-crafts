@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getOrderDetails } from "../Redux/Actions/OrderActions";
@@ -30,7 +30,7 @@ const OrderDetailsScreen = () => {
                 <img src={item.image} alt={item.name} />
 
                 <div>
-                    <p>{item.name} Whos that hat Whos that hat</p>
+                    <p>{item.name}</p>
                     <p>Qty: {item.qty}</p>
                 </div>
 
@@ -95,18 +95,18 @@ const OrderDetailsScreen = () => {
 
                                 <div className="order-details__subtotal">
                                     <p className="lt-font"> Subtotal</p>
-                                    <p>${orderDetails.totalPrice}</p>
+                                    <p>${orderDetails.subtotal.toFixed(2)}</p>
                                 </div>
 
                                 <div className="order-details__shipping">
                                     <p className="lt-font">Shipping</p>
-                                    <p>${orderDetails.shippingPrice}</p>
+                                    <p>${orderDetails.shipping.toFixed(2)}</p>
                                 </div>
 
                                 <div className="order-details__total">
                                     <p>Total</p>
-                                    <p>${orderDetails.totalPrice}</p>
-                                    <p className="lt-font">Including ${orderDetails.taxPrice} in tax</p>
+                                    <p>${orderDetails.total.toFixed(2)}</p>
+                                    <p className="lt-font">Including ${orderDetails.tax.toFixed(2)} in tax</p>
                                 </div>
                             </div>
                         </div>

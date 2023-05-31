@@ -10,7 +10,7 @@ import snapchatIcon from "../icons/snap-icon.png";
 import twitterIcon from "../icons/tw-icon.png";
 
 const Header = () => {
-    const [isMenuShown, setIsMenuShown] = useState(false);
+    const [showMenu, setShowMenu] = useState(false);
     const cart = useSelector(state => state.cart);
     const { cartItems } = cart;
     
@@ -38,7 +38,6 @@ const Header = () => {
 
                     <div>
                         <Link to="/"><img className="header-logo" src="/images/logo.png" alt="store logo link to homepage" tabIndex="0"/></Link>
-
                     </div>
 
                     <div className="header-icons"> 
@@ -56,10 +55,10 @@ const Header = () => {
                     </div>
 
                     <button 
-                        className={`mobile-nav__hamburger-button ${isMenuShown ? "open" : ""}`}
-                        aria-label="mobile navigation toggle"
-                        aria-expanded={isMenuShown ? "true" : "false"}
-                        onClick={()=> {setIsMenuShown(prevIsMenuShown => !prevIsMenuShown)}}     
+                        className={`mobile-nav__hamburger-button ${showMenu ? "open" : ""}`}
+                        aria-controls="mobile-nav"
+                        aria-expanded={showMenu ? "true" : "false"}
+                        onClick={()=> {setShowMenu(prevShowMenu => !prevShowMenu)}}     
                     >
                         {/* hamburger menu button pieces*/}
                         <span className="mobile-nav__hamburger-button__top"></span>
@@ -79,7 +78,7 @@ const Header = () => {
                 </div>
             </nav>
 
-            {isMenuShown ? <Menu /> : null}
+            {showMenu ? <Menu setShowMenu={setShowMenu}/> : null }
         </header>
     );
 };

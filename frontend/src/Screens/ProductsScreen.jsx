@@ -21,7 +21,6 @@ const Products = () => {
         filteredProducts = products.filter(product => product.category === category);
     }
 
-    
     useEffect(() => {
         dispatch(listProduct());
     }, [dispatch]);
@@ -32,14 +31,14 @@ const Products = () => {
             const {_id, image, name, description, price} = product;
             return (
                 <ProductCard
-                key={_id}
-                id={_id} 
-                image={image}
-                name={name}
-                description={description}
-                price={price / 100}
+                    key={_id}
+                    id={_id} 
+                    image={image}
+                    name={name}
+                    description={description}
+                    price={price / 100}
                 />       
-                );
+            );
         })
         :
         products.map(product => {

@@ -5,7 +5,7 @@ const AboutScreen = () => {
                 <h1>ABOUT</h1>
             </div>
             <section>
-                <img className="about-portrait" src="" alt="portrait of owner Ramsey Valdes" />
+                <img className="about-portrait" src="/images/portrait.jpeg" alt="portrait of owner Ramsey Valdes" />
                 <div className="about-text">
                     <h2>About Us</h2>
                     <p>

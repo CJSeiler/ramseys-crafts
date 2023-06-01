@@ -1,12 +1,13 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import ProfileUpdateForm from "../Components/profileComponents/ProfileUpdateForm";
+import ProfileUpdateForm from "../Components/profileComponents/ProfileUpdateForm.jsx";
 import OrdersList from "../Components/profileComponents/OrdersList";
 import { logout } from "../Redux/Actions/UserActions";
 import { listOrders } from "../Redux/Actions/OrderActions";
 import { formatDate } from "../utils/utils";
 import profileIcon from "../icons/profile-icon.svg"
+import ProfileUpdateForm from './../Components/profileComponents/ProfileUpdateForm';
 
 const ProfileScreen = () => {
     const [tab, setTab] = useState("settings");

@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
-import Loading from "../../Components/LoadingError/Loading";
-import Message from "../../Components/LoadingError/Error";
+import Loading from "../LoadingError/Loading";
+import Message from "../LoadingError/Error";
 import { formatDate } from "../../utils/utils";
 
 const OrdersList = (props) => {

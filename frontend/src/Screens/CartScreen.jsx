@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { calculateSubtotal } from "../utils/priceUtils";
-import CartItem from "../Components/cartComponents/CartItem";
+import CartItem from "../Components/CartComponents/CartItem";
 
 const CartScreen = () => {
     const cart = useSelector(state => state.cart);

@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import ProfileUpdateForm from "../Components/profileComponents/ProfileUpdateForm.jsx";
-import OrdersList from "../Components/profileComponents/OrdersList";
+import ProfileUpdateForm from "../Components/ProfileComponents/ProfileUpdateForm.jsx";
+import OrdersList from "../Components/ProfileComponents/OrdersList.jsx";
 import { logout } from "../Redux/Actions/UserActions";
 import { listOrders } from "../Redux/Actions/OrderActions";
 import { formatDate } from "../utils/utils";

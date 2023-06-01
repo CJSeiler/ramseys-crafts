@@ -1,7 +1,6 @@
 import { handleApiCall } from "../utils/APIHanlder";
 import { useState, useRef } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
-import axios from "axios";
 import emailjs from "@emailjs/browser";
 import Message from "../Components/LoadingError/Error";
 

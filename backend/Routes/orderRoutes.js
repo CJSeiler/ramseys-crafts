@@ -20,7 +20,6 @@ orderRouter.post("/", protect, asyncHandler(async (req, res) => {
     } = req.body;
 
     const addressValidation = await verifyShippingAddress(shippingAddress);
-    console.log(addressValidation);
    
    if (!await verifyOrder(orderItems, total)) {
         res.status(400);

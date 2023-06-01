@@ -14,7 +14,6 @@ import {
         CART_CLEAR_ITEMS, 
         CART_CLEAR_SHIPPING_ADDRESS 
     } from "../Constants/CartConstants"
-import axios from "axios"
 import { logout } from "./UserActions"
 
 // CREATE ORDER

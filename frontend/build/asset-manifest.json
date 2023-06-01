@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/static/css/main.ef115d7b.css",
+    "main.js": "/static/js/main.0202ce8e.js",
+    "static/media/sweater1.png": "/static/media/sweater1.5a246581cb1c6f8f9569.png",
+    "static/media/yarn1.png": "/static/media/yarn1.7c0297a61768165eb2a7.png",
+    "static/media/hat2.png": "/static/media/hat2.c0e885bf8262fc810c7d.png",
+    "static/media/header2.jpg": "/static/media/header2.1c43178dfdaf5253afaa.jpg",
+    "static/media/about.jpg": "/static/media/about.4e7702653e6a4bc654d4.jpg",
+    "static/media/products.jpg": "/static/media/products.27e32c35f17425e07c7b.jpg",
+    "static/media/contact.jpg": "/static/media/contact.d3999f6465549d99d979.jpg",
+    "index.html": "/index.html",
+    "static/media/truck-solid.svg": "/static/media/truck-solid.c8f6bf48c4f774d135878ebec2a484c6.svg",
+    "static/media/cart.svg": "/static/media/cart.92ef1eb8f6760643f59e59cdee8425e2.svg",
+    "static/media/profile-icon.svg": "/static/media/profile-icon.8a97a5cb9dcf946c0302034f90e4045c.svg",
+    "static/media/user-solid.svg": "/static/media/user-solid.5234d6211d575dbf8f6f0ba6747268c7.svg",
+    "static/media/location-dot-solid.svg": "/static/media/location-dot-solid.86498d0aed84ffed80e9ed215a160eb6.svg",
+    "main.ef115d7b.css.map": "/static/css/main.ef115d7b.css.map",
+    "main.0202ce8e.js.map": "/static/js/main.0202ce8e.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.ef115d7b.css",
+    "static/js/main.0202ce8e.js"
+  ]
+}

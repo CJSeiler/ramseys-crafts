@@ -18,10 +18,7 @@ const App = () => {
   return (
     <div className="app__container">
       {showModal ? 
-        <Modal 
-        showModal={showModal} 
-        setShowModal={setShowModal} 
-        /> 
+        <Modal showModal={showModal} setShowModal={setShowModal} /> 
       : 
         ""
       }

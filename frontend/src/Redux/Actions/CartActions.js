@@ -1,14 +1,14 @@
+import { handleApiCall } from "../../utils/APIHanlder";
 import { 
     CART_ADD_ITEM,
     CART_REMOVE_ITEM,
     CART_UPDATE_QTY,
     CART_SAVE_SHIPPING_ADDRESS,
 } from "../Constants/CartConstants";
-import axios from "axios";
 
 // ADD PRODUCT TO CART
 export const addToCart = (id, qty) => async(dispatch, getState) => {
-    const { data } = await axios.get(`/api/products/${id}`);
+    const data = await handleApiCall(`api/products/${id}`, { method: "GET" });
 
     dispatch({
         type: CART_ADD_ITEM,

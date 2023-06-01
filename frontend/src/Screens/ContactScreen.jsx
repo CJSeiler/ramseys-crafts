@@ -1,3 +1,4 @@
+import { handleApiCall } from "../utils/APIHanlder";
 import { useState, useRef } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
 import axios from "axios";
@@ -56,8 +57,15 @@ const ContactScreen = () => {
         captchaRef.current.reset();
 
         try {
-            const response = await axios.post("/api/contact/verify-token", { token });
-            if (response.status === 200) {
+            const config = {
+                method: "POST",
+                data: {
+                    token
+                }
+            }
+            const data = await handleApiCall("api/contact/verify-token", config);
+            console.log(data)
+            if (data.success) {
                 sendEmail();
             }
         } catch (error) {

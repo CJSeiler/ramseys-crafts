@@ -11,7 +11,7 @@ import {
     calculateTax,
     calculateTotal
     } from "../../utils/priceUtils";
-import { formatCCExpiry, ccExpired} from "../../utils/creditCardUtils";
+import { formatCCExpiry, checkExpiration} from "../../utils/creditCardUtils";
 
 const CheckoutForm = () => {
     const dispatch = useDispatch();
@@ -89,7 +89,7 @@ const CheckoutForm = () => {
 
         if (value.length === 5) {
             // check if cc is expired and display error message if true
-            if (ccExpired(value)) {
+            if (checkExpiration(value)) {
                 setFormError("Invalid Expiration.  Please Enter a valid expiration date.");
             } else {
                 setFormError("");

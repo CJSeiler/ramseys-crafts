@@ -2,7 +2,6 @@ import express from "express";
 import asyncHandler from "express-async-handler";
 import Product from "../Models/ProductModel.js";
 
-
 const productRouter = express.Router();
 
 // GET ALL PRODUCTS

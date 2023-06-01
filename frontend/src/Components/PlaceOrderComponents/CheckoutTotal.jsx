@@ -1,5 +1,3 @@
- 
-
 const CheckoutTotal = ({ cart }) => {
     return (
         <div className="checkout__total">

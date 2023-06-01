@@ -12,7 +12,7 @@ const formatCCExpiry = str => {
     );
 }
 
-const ccExpired = date => {
+const checkExpiration = date => {
     const dateArr = date.split('/');
     const exYear = +dateArr[1] + 2000;
     const exMonth = +dateArr[0] - 1; // JS months start with 0
@@ -23,4 +23,4 @@ const ccExpired = date => {
     return dateNow > dateObj;
 };
 
-export { formatCCExpiry, ccExpired };  
+export { formatCCExpiry, checkExpiration }; 

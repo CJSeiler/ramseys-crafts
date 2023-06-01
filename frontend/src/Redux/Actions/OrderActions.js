@@ -1,3 +1,4 @@
+import { handleApiCall } from "../../utils/APIHanlder";
 import { 
     ORDER_CREATE_REQUEST, 
     ORDER_CREATE_SUCCESS, 
@@ -26,13 +27,16 @@ export const createOrder = order => async(dispatch, getState) => {
         } = getState();
 
         const config = {
+            method: "POST",
             headers: {
                 "Content-Type": "application/json",
                 Authorization: `Bearer ${userInfo.token}`,
-            }
+            },
+            data: order,
         };
 
-        const { data } = await axios.post(`/api/orders`, order, config);
+        const data = await handleApiCall("api/orders", config);
+
         dispatch({ type: ORDER_CREATE_SUCCESS, payload: data });
         dispatch({ type: CART_CLEAR_ITEMS, payload: data });
         dispatch({type: CART_CLEAR_SHIPPING_ADDRESS, payload: data});
@@ -66,12 +70,14 @@ export const listOrders = () => async (dispatch, getState) => {
         } = getState();
 
         const config = {
+            method: "GET",
             headers: {
                 Authorization: `Bearer ${userInfo.token}`
             },
         };
 
-        const { data } = await axios.get(`/api/orders/`, config);
+        const data = await handleApiCall("api/orders/", config);
+
         dispatch({ type: ORDER_LIST_SUCCESS, payload: data });
     } catch (error) {
         const message = 
@@ -100,12 +106,13 @@ export const getOrderDetails = (id) => async (dispatch, getState) => {
         } = getState();
 
         const config = {
+            method: "GET",
             headers: {
                 Authorization: `Bearer ${userInfo.token}`
             },
         };
 
-        const { data } = await axios.get(`/api/orders/${id}`, config);
+        const data = await handleApiCall(`api/orders/${id}`, config);
         dispatch({ type: ORDER_DETAILS_SUCCESS, payload: data });
     } catch (error) {
         const message = 

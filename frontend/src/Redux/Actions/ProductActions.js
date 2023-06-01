@@ -1,3 +1,4 @@
+import { handleApiCall } from "../../utils/APIHanlder";
 import { 
     PRODUCT_LIST_FAIL, 
     PRODUCT_LIST_REQUEST, 
@@ -5,15 +6,15 @@ import {
     PRODUCT_DETAILS_FAIL, 
     PRODUCT_DETAILS_REQUEST, 
     PRODUCT_DETAILS_SUCCESS, 
-} from "../Constants/ProductConstants"
-import axios from "axios"
+} from "../Constants/ProductConstants";
 
 // PRODUCT LIST
 export const listProduct = () => async(dispatch) => {
     try {
         dispatch({ type: PRODUCT_LIST_REQUEST })
-        const { data } = await axios.get("/api/products")
-        dispatch({ type: PRODUCT_LIST_SUCCESS, payload: data} )
+        const data = await handleApiCall("api/products", { method: "GET" });
+
+        dispatch({ type: PRODUCT_LIST_SUCCESS, payload: data});
     } catch (error) {
         dispatch({
             type: PRODUCT_LIST_FAIL,
@@ -21,15 +22,15 @@ export const listProduct = () => async(dispatch) => {
                 error.response && error.response.data.message 
                     ? error.response.data.message
                     : error.message,
-        }) 
+        });
     }
-}
+};
 
 // SINGLE PRODUCT
 export const listSingleProduct = (id) => async(dispatch) => {
     try {
         dispatch({ type: PRODUCT_DETAILS_REQUEST })
-        const { data } = await axios.get(`/api/products/${id}`)
+        const data = await handleApiCall(`api/products/${id}`, { method: "GET" });
         dispatch({ type: PRODUCT_DETAILS_SUCCESS, payload: data} )
     } catch (error) {
         dispatch({
@@ -40,4 +41,4 @@ export const listSingleProduct = (id) => async(dispatch) => {
                     : error.message,
         }) 
     }
-}
+};

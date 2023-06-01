@@ -1,7 +1,7 @@
 {
   "name": "ramseys-craft-store",
   "version": "0.1.0",
-  "proxy": "http://localhost:5000",
+  "proxy": "https://ramseys-craft-store.onrender.com",
   "private": true,
   "dependencies": {
     "@emailjs/browser": "^3.10.0",

@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import OrderItems from "../Components/PlaceOrderComponents/OrderItems";
-import CheckoutForm from "../Components/PlaceOrderComponents/CheckoutForm";
+import OrderItems from "../Components/PlaceOrderComponents/OrderItems.jsx";
+import CheckoutForm from "../Components/PlaceOrderComponents/CheckoutForm.jsx";
 import userIcon from "../icons/user-solid.svg";
 import truckIcon from "../icons/truck-solid.svg";
 import locationIcon from "../icons/location-dot-solid.svg";

@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import { Outlet } from "react-router-dom";
-import Modal from "./Components/Modal";
-import Header from "./Components/Header";
-import Footer from "./Components/Footer";
+import Modal from "./Components/Modal.jsx";
+import Header from "./Components/Header.jsx";
+import Footer from "./Components/Footer.jsx";
 import "./App.css";
 import "react-toastify/dist/ReactToastify.css";
 

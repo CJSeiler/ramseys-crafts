@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Message from "../LoadingError/Error";
 import { createOrder } from "../../Redux/Actions/OrderActions";
 import { ORDER_CREATE_RESET } from "../../Redux/Constants/OrderConstants";
-import CheckoutTotal from "./CheckoutTotal";
+import CheckoutTotal from "./CheckoutTotal.jsx";
 import {
     calculateSubtotal,
     calculateShipping,

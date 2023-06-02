@@ -2,9 +2,9 @@ import { useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { listProduct } from "../Redux/Actions/ProductActions";
-import ProductCard from "../Components/ProductCard";
-import Loading from "../Components/LoadingError/Loading";
-import Message from "../Components/LoadingError/Error";
+import ProductCard from "../Components/ProductCard.jsx";
+import Loading from "../Components/LoadingError/Loading.jsx";
+import Message from "../Components/LoadingError/Error.jsx";
 
 const Products = () => {
     const dispatch =  useDispatch();

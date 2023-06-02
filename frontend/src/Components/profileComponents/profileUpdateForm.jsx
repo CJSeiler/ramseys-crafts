@@ -1,8 +1,8 @@
 import { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import Toast from "../LoadingError/Toast";
-import Message from "../LoadingError/Error";
-import Loading from "../LoadingError/Loading";
+import Toast from "../LoadingError/Toast.jsx";
+import Message from "../LoadingError/Error.jsx";
+import Loading from "../LoadingError/Loading.jsx";
 import { toast } from "react-toastify";
 import { updateUserProfile } from "../../Redux/Actions/UserActions";
 

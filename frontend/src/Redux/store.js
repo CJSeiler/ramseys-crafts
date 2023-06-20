@@ -40,7 +40,6 @@ const store = configureStore({
         cart: cartReducer,
         userLogin: userLoginReducer,
         userRegister: userRegisterReducer,
-        // userDetails: userDetailsReducer,
         userUpdateProfile: userUpdateProfileReducer,
         orderCreate: orderCreateReducer,
         orderList: orderListReducer,

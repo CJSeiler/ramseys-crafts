@@ -15,11 +15,11 @@ const ProfileUpdateForm = () => {
     });
 
     const toastId = useRef(null);
-
-    const { error, userInfo } = useSelector(state => state.userLogin);
+    const { userInfo } = useSelector(state => state.userLogin);
 
     const userUpdateProfile = useSelector(state => state.userUpdateProfile);
-    const { loading } = userUpdateProfile;
+    const { loading, error } = userUpdateProfile;
+
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -44,21 +44,27 @@ const ProfileUpdateForm = () => {
         });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
-        if(formData.password !== formData.confirmPassword) {
+        if (formData.password !== formData.confirmPassword) {
             // prevents the error from stacking multiple times
             if (!toast.isActive(toastId.current)) {
                 toastId.current = toast.error("Passwords do not match");
               }
-        } else {
-            const { name, email, password } = formData;
-            dispatch(updateUserProfile({id: userInfo._id, name, email, password}));
-            if (!toast.isActive(toastId.current)) {
-                toastId.current = toast.success("Profile Updated");
-            }
         }
+
+        const { name, email, password } = formData;
+
+        // try catch block necessary to get error from api call. Can't use error from redux store.
+        try {
+            await dispatch(updateUserProfile({id: userInfo._id, name, email, password})); 
+        } catch (error) {
+            toast.current = toast.error("Update failed."); 
+            return
+        }
+        
+        toastId.current = toast.success("Profile Updated");
     };
     
     return (

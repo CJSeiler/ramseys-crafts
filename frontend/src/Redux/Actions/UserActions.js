@@ -121,5 +121,8 @@ export const updateUserProfile = (user) => async(dispatch, getState) => {
             type: USER_UPDATE_PROFILE_FAIL,
             payload: message
         });
+
+        // thrown error necessary for showing error on frontend
+        throw new Error(message);
     }
 };

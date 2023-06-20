@@ -63,6 +63,12 @@ userRouter.post("/", asyncHandler(async (req, res, next) => {
 userRouter.put("/profile", protect, asyncHandler(async (req, res) => {
     const user = req.user;
 
+    // prevents users from changing example account details
+    if (user.name === "example") {
+        res.status(403);
+        throw new Error("Forbidden: can't change example account details");
+    }
+
     if (user) {
         user.name = req.body.name || user.name;
         user.email = req.body.email || user.email;
@@ -81,8 +87,7 @@ userRouter.put("/profile", protect, asyncHandler(async (req, res) => {
     } else {
         res.status(404);
         throw new Error("User not found");
-    }
-})
+    }})
 );
 
 export default userRouter;

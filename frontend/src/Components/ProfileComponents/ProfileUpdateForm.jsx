@@ -62,7 +62,7 @@ const ProfileUpdateForm = () => {
             await dispatch(updateUserProfile({id: userInfo._id, name, email, password})); 
         } catch (error) {
             toast.current = toast.error("Update failed."); 
-            return
+            return;
         }
         
         toastId.current = toast.success("Profile Updated");

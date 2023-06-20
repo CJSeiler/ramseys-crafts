@@ -51,8 +51,8 @@ const ProfileUpdateForm = () => {
             // prevents the error from stacking multiple times
             if (!toast.isActive(toastId.current)) {
                 toastId.current = toast.error("Passwords do not match");
-                return;
               }
+            return;
         }
 
         const { name, email, password } = formData;

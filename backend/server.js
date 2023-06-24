@@ -13,7 +13,11 @@ connectDatabase();
 const app = express();
 
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+    origin: "https://ramseys-crafts-api.onrender.com",
+    methods: "*",
+    allowedHeaders: ["Content-Type", "Authorization"],
+}));
 
 // API
 app.use("/api/products", productRouter);

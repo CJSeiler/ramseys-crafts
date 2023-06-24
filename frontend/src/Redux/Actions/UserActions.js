@@ -1,4 +1,4 @@
-import { handleApiCall } from "../../utils/APIHanlder";
+import { handleApiCall } from "../../utils/APIHandler";
 import { 
     USER_LOGIN_REQUEST, 
     USER_LOGIN_SUCCESS,

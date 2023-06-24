@@ -1,4 +1,4 @@
-import { handleApiCall } from "../../utils/APIHanlder";
+import { handleApiCall } from "../../utils/APIHandler";
 import { 
     CART_ADD_ITEM,
     CART_REMOVE_ITEM,

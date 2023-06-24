@@ -1,4 +1,4 @@
-import { handleApiCall } from "../../utils/APIHanlder";
+import { handleApiCall } from "../../utils/APIHandler";
 import { 
     ORDER_CREATE_REQUEST, 
     ORDER_CREATE_SUCCESS, 

@@ -1,4 +1,4 @@
-import { handleApiCall } from "../../utils/APIHanlder";
+import { handleApiCall } from "../../utils/APIHandler";
 import { 
     PRODUCT_LIST_FAIL, 
     PRODUCT_LIST_REQUEST, 

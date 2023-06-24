@@ -4,7 +4,7 @@ import axios from "axios";
 const handleApiCall = async (endpoint, options) => {
     // url is either localhost or hosted api url based on environment
     const url = process.env === "production" ? 
-        `${API_BASE_URL}/${endpoint}`
+        `/${API_BASE_URL}/${endpoint}`
         :
         `/${endpoint}`
 

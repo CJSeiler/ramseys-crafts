@@ -1,7 +1,7 @@
 import express from "express";
 import asyncHandler from "express-async-handler";
 import protect from "../Middleware/AuthMiddleware.js";
-import { verifyOrder, verifyShippingAddress} from "../utils/verifyOrder.js";
+import { verifyOrder } from "../utils/verifyOrder.js";
 import Order from "./../Models/OrderModel.js";
 
 
@@ -19,21 +19,23 @@ orderRouter.post("/", protect, asyncHandler(async (req, res) => {
         total,
     } = req.body;
 
-    const addressValidation = await verifyShippingAddress(shippingAddress);
+    // google api validation
+    // const addressValidation = await verifyShippingAddress(shippingAddress);
    
    if (!await verifyOrder(orderItems, total)) {
         res.status(400);
         throw new Error("Order prices do not match");
     }
 
-    if(addressValidation.error) {
-        res.status(addressValidation.error.code);
-        res.json(addressValidation.error);
-    }
+    // google api validation
+    // if (addressValidation.error) {
+    //     res.status(addressValidation.error.code);
+    //     res.json(addressValidation.error);
+    // }
 
-    if(addressValidation.result.verdict.hasUnconfirmedComponents) {
-        throw new Error("invalid address");
-    }
+    // if (addressValidation.result.verdict.hasUnconfirmedComponents) {
+    //     throw new Error("invalid address");
+    // }
     
     if (orderItems && orderItems.length === 0) {
         res.status(400);

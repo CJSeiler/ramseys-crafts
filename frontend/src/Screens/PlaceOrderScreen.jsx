@@ -22,10 +22,12 @@ const PlaceOrderScreen = () => {
     const isLoggedIn = userInfo ? true : false;
 
     useEffect(() => {
+        // redirect to login if not logged in
         if(!isLoggedIn) {
             navigate("/login");
         }
 
+        // redirect to shipping form if no address is saved
         if(!shippingAddress) {
             navigate("/shipping");
         }

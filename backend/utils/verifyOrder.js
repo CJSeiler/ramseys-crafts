@@ -5,9 +5,8 @@ import {
     calculateTotal,
    } from "./calculateProductPrices.js";
 import Product from "../Models/ProductModel.js";
-import axios from "axios"
 
-//verify total price with database prices
+// verify total price with database prices
 const verifyOrder = async (cartItems, total) => {
     let verifiedSubtotal = 0;
 
@@ -34,29 +33,31 @@ const verifyOrder = async (cartItems, total) => {
     return Number(verifiedTotal) === Number(total) ? true : false;
 };
 
-const verifyShippingAddress = async (shippingAddress) => {
-    const url = `https://addressvalidation.googleapis.com/v1:validateAddress?key=${process.env.GOOGLE_API_KEY}`;
+// google address validation api
+// const verifyShippingAddress = async (shippingAddress) => {
+//     const url = `https://addressvalidation.googleapis.com/v1:validateAddress?key=${process.env.GOOGLE_API_KEY}`;
 
-    const formattedAddress = {
-        address: {
-            regionCode: "US",
-            locality: shippingAddress.city,
-            addressLines: [shippingAddress.address, shippingAddress.apt]
-        }
-    };
+//     const formattedAddress = {
+//         address: {
+//             regionCode: "US",
+//             locality: shippingAddress.city,
+//             addressLines: [shippingAddress.address, shippingAddress.apt]
+//         }
+//     };
 
-    const config = {
-        headers: {
-          'Content-Type': 'application/json'
-        }
-    };
+//     const config = {
+//         headers: {
+//           'Content-Type': 'application/json'
+//         }
+//     };
 
-    try {
-        const { data } = await axios.post(url, JSON.stringify(formattedAddress), config);
-        return data;
-    } catch (error) {
-        throw new Error("invalid address");
-    }
-};
+//     try {
+//         const { data } = await axios.post(url, JSON.stringify(formattedAddress), config);
+//         return data;
+//     } catch (error) {
+//         console.log(error);
+//         throw new Error("invalid address");
+//     }
+// };
 
-export { verifyOrder, verifyShippingAddress }; 
+export { verifyOrder }; 

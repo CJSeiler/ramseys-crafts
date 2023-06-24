@@ -14,7 +14,7 @@ const app = express();
 
 app.use(express.json());
 app.use(cors({
-    origin: "https://ramseys-crafts-api.onrender.com",
+    origin: "https://ramseys-craft-store.onrender.com",
     methods: "*",
     allowedHeaders: ["Content-Type", "Authorization"],
 }));

@@ -1,4 +1,4 @@
-import { handleApiCall } from "../utils/APIHanlder";
+import { handleApiCall } from "../utils/APIHandler";
 import { useState, useRef } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
 import emailjs from "@emailjs/browser";
